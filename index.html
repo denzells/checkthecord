@@ -1256,7 +1256,7 @@
   // ── Estadísticas del bot (requiere proxy backend — no funciona directo desde browser por CORS) ──
   // Para mostrar estadísticas reales, crea un endpoint en tu servidor que consulte
   // la API de Discord y devuelva { servers: N, users: N }, luego apunta STATS_API_URL a él.
-  const STATS_API_URL = null; // Ej: 'https://checkthecord.xyz/api/stats'
+  const STATS_API_URL = 'https://raw.githubusercontent.com/denzells/checkthecord/main/stats.json'; // Ej: 'https://checkthecord.xyz/api/stats'
 
   async function initStats() {
     const serverEl = document.getElementById('stat-servers');
@@ -1425,3 +1425,4 @@
 </style>
 </body>
 </html>
+
