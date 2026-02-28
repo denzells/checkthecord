@@ -1208,52 +1208,30 @@
 
 <script>
   // ══════════════════════════════════════════════════════════════════
-  // CARGA DE LINKS DESDE config.json
-  //
-  // Formato esperado en config.json:
-  // {
-  //   "token": "Bot YOUR_BOT_TOKEN_HERE",
-  //   "BotLink": "https://discord.com/oauth2/authorize?client_id=...",
-  //   "invitacionServer": "https://discord.gg/XXXXXXX"
-  // }
-  //
-  // Mapeo de data-role:
-  //   data-role="botlink"  → config.BotLink       (botón "Añadir a Discord")
-  //   data-role="support"  → config.invitacionServer (botones "Soporte" y "→ Discord" en comandos)
+  // ✏️  CONFIGURA AQUÍ TUS LINKS — sin necesidad de config.json
+  // ══════════════════════════════════════════════════════════════════
+  const CTC_CONFIG = {
+    BotLink:          'https://discord.com/oauth2/authorize?client_id=TU_CLIENT_ID',  // ← URL de invitación del bot
+    invitacionServer: 'https://discord.gg/svydbbgxK7',  // ← URL del servidor de soporte
+  };
   // ══════════════════════════════════════════════════════════════════
 
-  async function loadConfig() {
-    try {
-      const res = await fetch('./config.json');
-      if (!res.ok) throw new Error('config.json not found');
-      return await res.json();
-    } catch (e) {
-      console.warn('[CTC] config.json no encontrado o inválido:', e.message);
-      return null;
-    }
+  // Aplica los links a todos los botones con data-role
+  function applyLinks() {
+    document.querySelectorAll('[data-role="botlink"]').forEach(el => {
+      el.href   = CTC_CONFIG.BotLink;
+      el.target = '_blank';
+      el.rel    = 'noopener noreferrer';
+    });
+    document.querySelectorAll('[data-role="support"]').forEach(el => {
+      el.href   = CTC_CONFIG.invitacionServer;
+      el.target = '_blank';
+      el.rel    = 'noopener noreferrer';
+    });
   }
 
-  function applyLinks(config) {
-    if (!config) return;
-
-    // Botón "Añadir a Discord" → config.BotLink
-    if (config.BotLink) {
-      document.querySelectorAll('[data-role="botlink"]').forEach(el => {
-        el.href = config.BotLink;
-        el.target = '_blank';
-        el.rel = 'noopener noreferrer';
-      });
-    }
-
-    // Botones "Soporte" + "→ Discord" en comandos → config.invitacionServer
-    if (config.invitacionServer) {
-      document.querySelectorAll('[data-role="support"]').forEach(el => {
-        el.href = config.invitacionServer;
-        el.target = '_blank';
-        el.rel = 'noopener noreferrer';
-      });
-    }
-  }
+  // Ejecutar inmediatamente al cargar
+  applyLinks();
 
   function formatNum(n) {
     if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -1274,62 +1252,33 @@
     requestAnimationFrame(step);
   }
 
-  async function fetchBotStats(token) {
-    const headers = {
-      'Authorization': token.startsWith('Bot ') ? token : `Bot ${token}`,
-      'Content-Type': 'application/json'
-    };
-
-    let servers = null;
-    let users = null;
-
-    try {
-      const appRes = await fetch('https://discord.com/api/v10/applications/@me', { headers });
-      if (appRes.ok) {
-        const appData = await appRes.json();
-        if (appData.approximate_guild_count != null) servers = appData.approximate_guild_count;
-        if (appData.approximate_user_install_count != null) users = appData.approximate_user_install_count;
-      }
-    } catch(e) {
-      console.warn('[CTC] No se pudo obtener stats de Discord (CORS en browser). Usa un proxy backend.');
-    }
-
-    return { servers, users };
-  }
+  // ── Estadísticas del bot (requiere proxy backend — no funciona directo desde browser por CORS) ──
+  // Para mostrar estadísticas reales, crea un endpoint en tu servidor que consulte
+  // la API de Discord y devuelva { servers: N, users: N }, luego apunta STATS_API_URL a él.
+  const STATS_API_URL = null; // Ej: 'https://checkthecord.xyz/api/stats'
 
   async function initStats() {
     const serverEl = document.getElementById('stat-servers');
     const userEl   = document.getElementById('stat-users');
 
-    const config = await loadConfig();
-
-    // ── Aplicar todos los links desde config.json ──
-    applyLinks(config);
-
-    if (!config || !config.token) {
+    if (!STATS_API_URL) {
       serverEl.textContent = '—';
       userEl.textContent   = '—';
-      console.warn('[CTC] Añade un config.json con tu token para ver las estadísticas en vivo.');
       return;
     }
 
-    const { servers, users } = await fetchBotStats(config.token);
-
-    if (servers != null) {
-      animateCount(serverEl, servers);
-    } else {
-      serverEl.innerHTML = '<span style="font-size:1rem;opacity:.5">N/D</span>';
-    }
-
-    if (users != null) {
-      animateCount(userEl, users);
-    } else {
-      userEl.innerHTML = '<span style="font-size:1rem;opacity:.5">N/D</span>';
+    try {
+      const res  = await fetch(STATS_API_URL);
+      const data = await res.json();
+      if (data.servers != null) animateCount(serverEl, data.servers);
+      if (data.users   != null) animateCount(userEl,   data.users);
+    } catch(e) {
+      serverEl.textContent = '—';
+      userEl.textContent   = '—';
     }
   }
 
   initStats();
-  // Refresca cada 5 minutos
   setInterval(initStats, 5 * 60 * 1000);
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1416,8 +1365,8 @@
         mobileMenu.appendChild(a);
       });
       document.body.appendChild(mobileMenu);
-      // Re-aplicar links por si el menú se abre después de que config ya cargó
-      loadConfig().then(applyLinks);
+      // Aplicar links al menú móvil recién creado
+      applyLinks();
     } else {
       mobileMenu.remove();
       mobileMenu = null;
