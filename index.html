@@ -34,8 +34,6 @@
       overflow-x: hidden;
     }
 
-
-
     /* ─── GLOW BLOBS ─── */
     .blob {
       position: fixed;
@@ -69,7 +67,8 @@
 
     /* ─── NAV ─── */
     nav {
-      position: relative;
+      position: sticky; /* fixed: removed duplicate "position: relative" */
+      top: 0;
       z-index: 100;
       display: flex;
       justify-content: space-between;
@@ -78,8 +77,6 @@
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
       background: rgba(10,10,12,0.6);
-      position: sticky;
-      top: 0;
     }
 
     .nav-logo {
@@ -456,7 +453,6 @@
       margin-bottom: 0;
     }
     .feat-card-wide .feat-title { font-size: 1.2rem; }
-    .feat-card-wide .feat-wide-body {}
     .feat-bullets {
       list-style: none;
       margin-top: 0.8rem;
@@ -508,7 +504,6 @@
       align-items: center;
     }
 
-    /* comparison table */
     .premium-compare {
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -543,7 +538,6 @@
     .check-yes { color: var(--red-bright); font-size: 1rem; }
     .check-no  { color: rgba(255,255,255,0.15); font-size: 1rem; }
 
-    /* premium card */
     .premium-card {
       border: 1px solid rgba(75,95,232,0.4);
       border-radius: 24px;
@@ -726,6 +720,10 @@
       border-radius: 2px;
       transition: all 0.3s;
     }
+    /* Burger open state */
+    .burger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ─── COMMANDS ─── */
     .commands-section {}
@@ -891,6 +889,44 @@
       .hero-buttons { flex-direction: column; align-items: stretch; }
       .hero-buttons a { text-align: center; justify-content: center; }
     }
+
+    /* ─── SCROLL HIGHLIGHT ─── */
+    @keyframes sectionFlash {
+      0%   { box-shadow: inset 0 0 0px 0px transparent; }
+      30%  { box-shadow: inset 0 0 60px 0px rgba(75,95,232,0.08); }
+      100% { box-shadow: inset 0 0 0px 0px transparent; }
+    }
+    .section-highlight {
+      animation: sectionFlash 1.2s ease forwards;
+    }
+
+    /* ─── NAV ACTIVE + HOVER UNDERLINE ─── */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--red-bright);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--red-bright);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -903,7 +939,7 @@
 <!-- ═══ NAV ═══ -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="data:image/png;base64,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" style="width:40px;height:40px;border-radius:10px;box-shadow:0 0 20px rgba(75,95,232,0.35);" alt="CTC Logo"/>
+    <img src="data:image/png;base64,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" style="width:40px;height:40px;border-radius:10px;box-shadow:0 0 20px rgba(75,95,232,0.35);" alt="CTC Logo"/>
     <span class="nav-logo-text">CTC</span>
   </a>
 
@@ -914,8 +950,8 @@
   </ul>
 
   <div class="nav-cta">
-    <a href="#" class="btn btn-ghost">Soporte</a>
-    <a href="#" class="btn btn-primary">⭐ Premium</a>
+    <a href="https://discord.gg/svydbbgxK7" target="_blank" class="btn btn-ghost">Soporte</a>
+    <a href="#premium" class="btn btn-primary">⭐ Premium</a>
     <button class="burger-btn" id="burger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -939,13 +975,13 @@
   </p>
 
   <div class="hero-buttons">
-    <a href="#" class="btn btn-discord" style="font-size:1rem; padding: .85rem 1.8rem;">
+    <a href="#" id="bot-invite-btn" class="btn btn-discord" style="font-size:1rem; padding: .85rem 1.8rem;">
       <svg width="20" height="20" viewBox="0 -28.5 256 256" fill="#fff">
         <path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"/>
       </svg>
       Añadir a Discord
     </a>
-    <a href="#" class="btn btn-hero-red" style="font-size:1rem;">
+    <a href="#premium" class="btn btn-hero-red" style="font-size:1rem;">
       ✦ Ver Premium
     </a>
   </div>
@@ -967,7 +1003,6 @@
 <hr class="hr-section" />
 
 <section id="caracteristicas">
-  <!-- COMMANDS TABLE -->
   <div class="commands-section reveal" style="margin-top: 3.5rem; transition-delay: 0.2s;">
     <div class="commands-header">
       <div>
@@ -981,11 +1016,8 @@
     </div>
 
     <div class="commands-grid">
-
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🛡️</span> Moderación
-        </div>
+        <div class="cmd-group-title"><span>🛡️</span> Moderación</div>
         <div class="cmd-row">
           <code class="cmd-name">/ban</code>
           <span class="cmd-desc">Banea a un usuario del servidor</span>
@@ -1008,15 +1040,13 @@
         </div>
         <div class="cmd-row">
           <code class="cmd-name">/infractions</code>
-          <span class="cmd-desc">Ver historial de infracciones de un usuario</span>
+          <span class="cmd-desc">Ver historial de infracciones</span>
           <span class="cmd-badge cmd-soon">Coming Soon</span>
         </div>
       </div>
 
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🔒</span> Seguridad
-        </div>
+        <div class="cmd-group-title"><span>🔒</span> Seguridad</div>
         <div class="cmd-row">
           <code class="cmd-name">/lockdown</code>
           <span class="cmd-desc">Bloquea todos los canales del servidor</span>
@@ -1040,9 +1070,7 @@
       </div>
 
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🎉</span> Comunidad
-        </div>
+        <div class="cmd-group-title"><span>🎉</span> Comunidad</div>
         <div class="cmd-row">
           <code class="cmd-name">/giveaway</code>
           <span class="cmd-desc">Crea un sorteo con opciones avanzadas</span>
@@ -1064,7 +1092,6 @@
           <span class="cmd-badge cmd-soon">Coming Soon</span>
         </div>
       </div>
-
     </div>
 
     <div class="commands-footer">
@@ -1073,7 +1100,6 @@
       <a href="https://discord.gg/svydbbgxK7" target="_blank" style="color: var(--red-bright); text-decoration: none; font-weight: 600; margin-left: 0.5rem;">→ Discord</a>
     </div>
   </div>
-
 </section>
 
 <!-- ═══ PREMIUM ═══ -->
@@ -1087,8 +1113,6 @@
   </div>
 
   <div class="premium-top reveal" style="margin-top: 3rem; transition-delay: 0.1s;">
-
-    <!-- Comparison table -->
     <div>
       <div class="premium-compare">
         <div class="compare-row header">
@@ -1096,60 +1120,19 @@
           <span style="text-align:center;">Free</span>
           <span style="text-align:center; color: var(--red-bright);">Premium</span>
         </div>
-        <div class="compare-row">
-          <span class="col-feat">Moderación básica</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Sorteos (hasta 2)</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Bienvenidas simples</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Sorteos ilimitados</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Anti-raid avanzado</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Dashboard de analytics</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Bienvenidas con imagen</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Música sin interrupciones</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Soporte prioritario 24/7</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Acceso anticipado a features</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
+        <div class="compare-row"><span class="col-feat">Moderación básica</span><span class="col-plan check-yes">✓</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Sorteos (hasta 2)</span><span class="col-plan check-yes">✓</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Bienvenidas simples</span><span class="col-plan check-yes">✓</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Sorteos ilimitados</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Anti-raid avanzado</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Dashboard de analytics</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Bienvenidas con imagen</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Música sin interrupciones</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Soporte prioritario 24/7</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
+        <div class="compare-row"><span class="col-feat">Acceso anticipado a features</span><span class="col-plan check-no">✕</span><span class="col-plan check-yes">✓</span></div>
       </div>
     </div>
 
-    <!-- Premium card -->
     <div>
       <div class="premium-card">
         <div class="premium-card-header">
@@ -1180,7 +1163,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1191,12 +1173,10 @@
     <p>Hecho con ❤️ para comunidades de Discord</p>
     <p style="margin-top: 0.2rem;">© 2025 CheckTheCord – WHIZY SAS</p>
   </div>
-
   <div class="footer-links">
     <h4>Suscripción</h4>
     <a href="#">Gestionar suscripción</a>
   </div>
-
   <div class="footer-links" style="text-align: right;">
     <h4>Legal</h4>
     <a href="#">Política de privacidad</a>
@@ -1204,248 +1184,249 @@
   </div>
 </footer>
 
+<!-- ═══ SCRIPT ACTUALIZADO ═══ -->
 <script>
-  // ── BOT STATS FROM CONFIG ──────────────────────────────
-  // Reads config.json (must be in the same folder as this HTML)
-  // config.json format:
-  // {
-  //   "token": "Bot YOUR_BOT_TOKEN_HERE",
-  //   "botInvite": "https://discord.com/oauth2/authorize?client_id=...",
-  //   "supportInvite": "https://discord.gg/svydbbgxK7"
-  // }
+(function () {
+  'use strict';
 
-  async function loadConfig() {
-    try {
-      const res = await fetch('./config.json');
-      if (!res.ok) throw new Error('config.json not found');
-      return await res.json();
-    } catch (e) {
-      console.warn('[CTC] config.json no encontrado o inválido:', e.message);
-      return null;
-    }
-  }
+  /* ─────────────────────────────────────────────────────
+     UTILIDADES
+  ───────────────────────────────────────────────────── */
 
+  /** Formatea números grandes: 1200 → "1.2K", 1500000 → "1.5M" */
   function formatNum(n) {
-    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-    if (n >= 1000)    return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    return n.toString();
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1_000)     return (n / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return String(n);
   }
 
+  /** Animación de contador numérico con easing cúbico */
   function animateCount(el, target) {
     const duration = 1200;
     const start = performance.now();
-    const step = (now) => {
+    function step(now) {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = formatNum(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(step);
       else el.textContent = formatNum(target);
-    };
+    }
     requestAnimationFrame(step);
   }
 
-  async function fetchBotStats(token) {
-    // Fetch bot application info (gives us authorized user count approximation)
-    // NOTE: Discord's bot token cannot call all endpoints from the browser due to CORS.
-    // The /users/@me and /applications/@me endpoints allow it when called server-side.
-    // From the browser we can only safely call /users/@me to confirm the token is valid.
-    // For guild count, this must be served via a small backend proxy or a status page.
-    // We'll fetch what's available and show fallback for the rest.
-
-    const headers = {
-      'Authorization': token.startsWith('Bot ') ? token : `Bot ${token}`,
-      'Content-Type': 'application/json'
-    };
-
-    let servers = null;
-    let users = null;
-
-    // Try to get bot user info (works from browser if CORS is allowed by Discord — usually blocked)
-    // In production, use a backend route like /api/stats that calls Discord server-side.
-    try {
-      const appRes = await fetch('https://discord.com/api/v10/applications/@me', { headers });
-      if (appRes.ok) {
-        const appData = await appRes.json();
-        if (appData.approximate_guild_count != null) servers = appData.approximate_guild_count;
-        if (appData.approximate_user_install_count != null) users = appData.approximate_user_install_count;
-      }
-    } catch(e) {
-      console.warn('[CTC] No se pudo obtener stats de Discord (CORS en browser). Usa un proxy backend.');
-    }
-
-    return { servers, users };
+  /** Muestra "N/D" con estilo reducido cuando no hay dato */
+  function showND(el) {
+    el.innerHTML = '<span style="font-size:1rem;opacity:.4">N/D</span>';
   }
 
+  /* ─────────────────────────────────────────────────────
+     CONFIG — lee config.json (mismo directorio)
+     Formato esperado:
+     {
+       "botInvite": "https://discord.com/oauth2/authorize?...",
+       "supportInvite": "https://discord.gg/...",
+       "stats": { "servers": 120, "users": 3400 }
+     }
+     Si stats está presente se usan esos valores directamente
+     (útil cuando el token no puede usarse desde el browser).
+  ───────────────────────────────────────────────────── */
+  async function loadConfig() {
+    try {
+      const res = await fetch('./config.json');
+      if (!res.ok) throw new Error('not found');
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────
+     STATS — intenta la API de Discord (solo funciona
+     desde backend/proxy; en browser Discord bloquea CORS).
+     Si falla, devuelve null para ambos campos.
+  ───────────────────────────────────────────────────── */
+  async function fetchDiscordStats(token) {
+    if (!token) return { servers: null, users: null };
+    const headers = {
+      Authorization: token.startsWith('Bot ') ? token : `Bot ${token}`,
+    };
+    try {
+      const res = await fetch('https://discord.com/api/v10/applications/@me', { headers });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      return {
+        servers: data.approximate_guild_count  ?? null,
+        users:   data.approximate_user_install_count ?? null,
+      };
+    } catch (err) {
+      console.warn('[CTC] API Discord bloqueada por CORS (normal en browser):', err.message);
+      return { servers: null, users: null };
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────
+     INIT STATS — orquesta config + API + render
+  ───────────────────────────────────────────────────── */
   async function initStats() {
     const serverEl = document.getElementById('stat-servers');
     const userEl   = document.getElementById('stat-users');
+    if (!serverEl || !userEl) return;
 
     const config = await loadConfig();
 
-    if (!config || !config.token) {
-      serverEl.textContent = '—';
-      userEl.textContent   = '—';
-      console.warn('[CTC] Añade un config.json con tu token para ver las estadísticas en vivo.');
+    // Actualiza los enlaces dinámicamente si config los tiene
+    if (config?.botInvite) {
+      document.querySelectorAll('#bot-invite-btn').forEach(a => { a.href = config.botInvite; });
+    }
+    if (config?.supportInvite) {
+      document.querySelectorAll('a[href*="discord.gg"]').forEach(a => { a.href = config.supportInvite; });
+    }
+
+    // Prioridad 1: stats manuales en config.json (no depende de CORS)
+    if (config?.stats?.servers != null && config?.stats?.users != null) {
+      animateCount(serverEl, config.stats.servers);
+      animateCount(userEl,   config.stats.users);
       return;
     }
 
-    // Update invite links dynamically if present in config
-    if (config.botInvite) {
-      document.querySelectorAll('a.btn-discord').forEach(a => a.href = config.botInvite);
-    }
-    if (config.supportInvite) {
-      document.querySelectorAll('a[href*="discord.gg"]').forEach(a => a.href = config.supportInvite);
-    }
+    // Prioridad 2: API de Discord (requiere proxy backend para funcionar en browser)
+    const { servers, users } = await fetchDiscordStats(config?.token);
 
-    const { servers, users } = await fetchBotStats(config.token);
+    if (servers != null) animateCount(serverEl, servers);
+    else showND(serverEl);
 
-    if (servers != null) {
-      animateCount(serverEl, servers);
-    } else {
-      serverEl.innerHTML = '<span style="font-size:1rem;opacity:.5">N/D</span>';
-    }
-
-    if (users != null) {
-      animateCount(userEl, users);
-    } else {
-      userEl.innerHTML = '<span style="font-size:1rem;opacity:.5">N/D</span>';
-    }
+    if (users != null) animateCount(userEl, users);
+    else showND(userEl);
   }
 
+  // Ejecuta al cargar y cada 5 minutos
   initStats();
-  // Refresca cada 5 minutos
   setInterval(initStats, 5 * 60 * 1000);
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => {
-        target.classList.add('section-highlight');
-        setTimeout(() => target.classList.remove('section-highlight'), 1200);
-      }, 500);
-    });
+
+  /* ─────────────────────────────────────────────────────
+     SMOOTH SCROLL para todos los enlaces internos (#)
+  ───────────────────────────────────────────────────── */
+  document.addEventListener('click', function (e) {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const hash = anchor.getAttribute('href');
+    if (hash === '#') return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Efecto flash al llegar
+    setTimeout(() => {
+      target.classList.add('section-highlight');
+      setTimeout(() => target.classList.remove('section-highlight'), 1200);
+    }, 500);
   });
 
-  // Active nav link on scroll
-  const sections = [
-    { id: 'caracteristicas', link: document.querySelector('a[href="#caracteristicas"]') },
-    { id: 'premium',         link: document.querySelector('a[href="#premium"]') },
+  /* ─────────────────────────────────────────────────────
+     NAV ACTIVO según scroll (IntersectionObserver)
+  ───────────────────────────────────────────────────── */
+  const navSections = [
+    { id: 'caracteristicas', link: document.querySelector('.nav-links a[href="#caracteristicas"]') },
+    { id: 'premium',         link: document.querySelector('.nav-links a[href="#premium"]') },
   ];
+
   const navObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      const match = sections.find(s => s.id === entry.target.id);
-      if (match?.link) {
-        if (entry.isIntersecting) match.link.classList.add('active');
-        else match.link.classList.remove('active');
-      }
+      const match = navSections.find(s => s.id === entry.target.id);
+      if (match?.link) match.link.classList.toggle('active', entry.isIntersecting);
     });
   }, { threshold: 0.3 });
-  sections.forEach(s => {
+
+  navSections.forEach(s => {
     const el = document.getElementById(s.id);
     if (el) navObserver.observe(el);
   });
 
-
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
+  /* ─────────────────────────────────────────────────────
+     REVEAL ON SCROLL (fade + slide up)
+  ───────────────────────────────────────────────────── */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
-  reveals.forEach(r => observer.observe(r));
 
-  // Stagger feat-cards
-  document.querySelectorAll('.feat-card').forEach((c, i) => {
-    c.style.transitionDelay = (i * 0.07) + 's';
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Stagger en tarjetas de features
+  document.querySelectorAll('.feat-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.07}s`;
   });
 
-  // Burger menu (mobile)
+  /* ─────────────────────────────────────────────────────
+     BURGER MENU (móvil)
+  ───────────────────────────────────────────────────── */
   const burger = document.getElementById('burger');
   let mobileMenu = null;
 
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.remove();
+    mobileMenu = null;
+    burger?.classList.remove('open');
+  }
+
+  function openMobileMenu() {
+    mobileMenu = document.createElement('div');
+    mobileMenu.style.cssText = `
+      position: fixed; top: 73px; left: 0; right: 0; z-index: 99;
+      background: rgba(10,10,12,0.97);
+      border-bottom: 1px solid rgba(75,95,232,0.2);
+      padding: 1.5rem 2rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      backdrop-filter: blur(20px);
+      animation: slideDown 0.25s ease;
+    `;
+
+    const items = [
+      { label: 'Documentación', href: '#caracteristicas' },
+      { label: 'Soporte',       href: 'https://discord.gg/svydbbgxK7', external: true },
+      { label: 'Premium',       href: '#premium' },
+    ];
+
+    items.forEach(item => {
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.external) a.target = '_blank';
+      a.style.cssText = 'color:#9a8a8e; font-size:1.1rem; text-decoration:none; font-weight:500; transition:color .2s;';
+      a.addEventListener('mouseenter', () => a.style.color = '#f0eaf0');
+      a.addEventListener('mouseleave', () => a.style.color = '#9a8a8e');
+      // Cierra el menú al navegar a un ancla interna
+      if (!item.external) a.addEventListener('click', closeMobileMenu);
+      mobileMenu.appendChild(a);
+    });
+
+    document.body.appendChild(mobileMenu);
+    burger?.classList.add('open');
+  }
+
   burger?.addEventListener('click', () => {
-    if (!mobileMenu) {
-      mobileMenu = document.createElement('div');
-      mobileMenu.style.cssText = `
-        position: fixed; top: 73px; left: 0; right: 0; z-index: 99;
-        background: rgba(10,10,12,0.97);
-        border-bottom: 1px solid rgba(75,95,232,0.2);
-        padding: 1.5rem 2rem;
-        display: flex; flex-direction: column; gap: 1.2rem;
-        backdrop-filter: blur(20px);
-        animation: slideDown 0.25s ease;
-      `;
-      ['Documentación','Soporte','Premium'].forEach((label, i) => {
-        const a = document.createElement('a');
-        const links = ['#caracteristicas', 'https://discord.gg/svydbbgxK7', '#premium'];
-        a.href = links[i];
-        if (i === 1) a.target = '_blank';
-        a.textContent = label;
-        a.style.cssText = 'color: #9a8a8e; font-size: 1.1rem; text-decoration: none; font-weight: 500;';
-        a.addEventListener('mouseenter', () => a.style.color = '#f0eaf0');
-        a.addEventListener('mouseleave', () => a.style.color = '#9a8a8e');
-        mobileMenu.appendChild(a);
-      });
-      document.body.appendChild(mobileMenu);
-    } else {
-      mobileMenu.remove();
-      mobileMenu = null;
+    mobileMenu ? closeMobileMenu() : openMobileMenu();
+  });
+
+  // Cierra el menú mobile si se hace clic fuera
+  document.addEventListener('click', e => {
+    if (mobileMenu && !mobileMenu.contains(e.target) && e.target !== burger && !burger?.contains(e.target)) {
+      closeMobileMenu();
     }
   });
+
+  // Cierra el menú mobile al redimensionar a desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMobileMenu();
+  });
+
+})();
 </script>
 
-<style>
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ─── SCROLL HIGHLIGHT ─── */
-  @keyframes sectionFlash {
-    0%   { box-shadow: inset 0 0 0px 0px transparent; }
-    30%  { box-shadow: inset 0 0 60px 0px rgba(75,95,232,0.08); }
-    100% { box-shadow: inset 0 0 0px 0px transparent; }
-  }
-  .section-highlight {
-    animation: sectionFlash 1.2s ease forwards;
-  }
-
-  /* ─── NAV ACTIVE ─── */
-  .nav-links a.active {
-    color: var(--text);
-    position: relative;
-  }
-  .nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 2px;
-    background: var(--red-bright);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--red-bright);
-  }
-  .nav-links a {
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 2px;
-    background: var(--red-bright);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--red-bright);
-    transform: scaleX(0);
-    transition: transform 0.25s ease;
-  }
-  .nav-links a:hover::after {
-    transform: scaleX(1);
-  }
-</style>
 </body>
 </html>
