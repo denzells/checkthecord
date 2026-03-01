@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad · CheckTheCord</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #4B5FE8;
+      --blue-bright: #5C6EF0;
+      --blue-dark: #2D3AAA;
+      --blue-glow: rgba(75,95,232,0.35);
+      --bg: #0a0a0c;
+      --bg-card: rgba(255,255,255,0.03);
+      --border: rgba(75,95,232,0.18);
+      --text: #f0eaf0;
+      --muted: #9a8a8e;
+    }
+
+    html { overflow-x: hidden; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(75,95,232,0.18) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(45,58,170,0.13) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      animation: drift 16s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(40px,30px) scale(1.05); }
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,12,0.6);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px var(--blue-glow);
+    }
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .nav-back:hover {
+      color: var(--text);
+      border-color: rgba(75,95,232,0.4);
+      background: rgba(75,95,232,0.05);
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 4rem 3rem;
+      max-width: 920px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s ease both;
+    }
+    .page-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: rgba(75,95,232,0.07);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue-bright) 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 4rem 6rem;
+    }
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 3rem;
+    }
+
+    .policy-section {
+      margin-bottom: 1.2rem;
+      padding: 2rem 2.2rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--bg-card);
+      transition: border-color 0.3s;
+      animation: fadeUp 0.6s ease both;
+    }
+    .policy-section:hover {
+      border-color: rgba(75,95,232,0.35);
+    }
+
+    .section-num {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      background: rgba(75,95,232,0.1);
+      border: 1px solid rgba(75,95,232,0.2);
+      border-radius: 100px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+    .section-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      color: var(--text);
+    }
+    .section-body {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+    .section-body p + p { margin-top: 0.75rem; }
+    .section-body strong { color: var(--text); }
+    .section-body a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .section-body a:hover { text-decoration: underline; }
+
+    .section-body ul {
+      list-style: none;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .section-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+    }
+    .section-body ul li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--blue-bright);
+      flex-shrink: 0;
+      margin-top: 0.56rem;
+    }
+
+    .highlight-box {
+      margin-top: 1.1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      border-left: 3px solid var(--blue-bright);
+      background: rgba(75,95,232,0.06);
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .mini-card {
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(75,95,232,0.15);
+      border-radius: 12px;
+      background: rgba(75,95,232,0.04);
+    }
+    .mini-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--blue-bright);
+      margin-bottom: 0.4rem;
+    }
+    .mini-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      margin-top: 2.5rem;
+      padding: 2rem 2.2rem;
+      border: 1px solid rgba(75,95,232,0.4);
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(75,95,232,0.08) 0%, transparent 70%);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.6s 0.45s ease both;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
+    }
+    .contact-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+    .contact-card a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    footer p { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-links a.active { color: var(--blue-bright); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .page-hero { padding: 3rem 1.5rem 2rem; }
+      .content-wrap { padding: 0 1.5rem 4rem; }
+      .two-col { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    <span class="nav-logo-text">CTC</span>
+  </a>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-eyebrow">Legal</div>
+  <h1 class="page-title">Política de <span>Privacidad</span></h1>
+  <p class="page-meta">Última actualización: 1 de marzo de 2025 &nbsp;·&nbsp; CheckTheCord</p>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+  <hr class="divider" />
+
+  <!-- 01 -->
+  <div class="policy-section" style="animation-delay:0.05s">
+    <span class="section-num">01</span>
+    <h2 class="section-heading">¿Quiénes somos?</h2>
+    <div class="section-body">
+      <p><strong>CheckTheCord (CTC)</strong> es un bot de Discord especializado en seguridad y moderación de servidores. Ofrece herramientas avanzadas para proteger comunidades: anti-raid, anti-spam, sistema de infracciones, moderación automática, verificación de usuarios, bienvenidas y más.</p>
+      <p>Esta política explica de forma transparente qué datos maneja el bot, por qué los necesita y cómo los protege.</p>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="policy-section" style="animation-delay:0.1s">
+    <span class="section-num">02</span>
+    <h2 class="section-heading">Datos que recopilamos y por qué</h2>
+    <div class="section-body">
+      <p>CTC solo recopila los datos estrictamente necesarios para prestar sus funciones de moderación y seguridad. A continuación se detalla cada tipo:</p>
+
+      <div class="two-col">
+        <div class="mini-card">
+          <div class="mini-card-title">🛡️ Moderación</div>
+          <p>ID de usuario, tipo de sanción (ban, kick, mute, warn), motivo, duración y moderador responsable. Necesario para mantener el historial de infracciones.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">🔒 Anti-raid / Anti-spam</div>
+          <p>Timestamps de mensajes, frecuencia de joins y patrones de actividad sospechosa. Solo se analiza en tiempo real para detectar ataques; no se almacena contenido.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">✅ Verificación</div>
+          <p>ID de usuario y estado de verificación (verificado / pendiente). No se almacena ningún dato personal fuera de Discord.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">👋 Bienvenidas</div>
+          <p>ID del canal configurado y plantilla del mensaje. El nombre de usuario se obtiene de Discord en tiempo real y no se guarda.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">🎉 Sorteos</div>
+          <p>ID de los participantes, ID del ganador o ganadores, premio y fechas de inicio y fin del sorteo.</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">📊 Conteo de mensajes</div>
+          <p>Número de mensajes por usuario dentro del servidor (sin contenido). Solo si el administrador activa esta función.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        🔐 CTC <strong>nunca</strong> lee ni almacena el contenido de los mensajes, DMs, contraseñas, correos electrónicos ni ningún otro dato personal sensible.
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="policy-section" style="animation-delay:0.15s">
+    <span class="section-num">03</span>
+    <h2 class="section-heading">Datos de configuración del servidor</h2>
+    <div class="section-body">
+      <p>Para funcionar correctamente, CTC almacena la configuración específica de cada servidor. Esto incluye:</p>
+      <ul>
+        <li>ID del servidor (guild ID)</li>
+        <li>IDs de canales asignados (logs, bienvenidas, verificación, etc.)</li>
+        <li>IDs de roles configurados (rol de muted, rol de verificado, roles de staff, etc.)</li>
+        <li>Umbrales y parámetros del sistema anti-spam y anti-raid</li>
+        <li>Palabras o patrones bloqueados por el filtro de contenido automático</li>
+        <li>Opciones habilitadas o deshabilitadas por los administradores</li>
+      </ul>
+      <p>Estos datos son propiedad del servidor y solo los gestiona el bot para ejecutar las funciones configuradas.</p>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="policy-section" style="animation-delay:0.2s">
+    <span class="section-num">04</span>
+    <h2 class="section-heading">Logs y registros de moderación</h2>
+    <div class="section-body">
+      <p>CTC puede generar y guardar registros de acciones de moderación (logs) que incluyen:</p>
+      <ul>
+        <li>ID del usuario sancionado</li>
+        <li>ID del moderador que ejecutó la acción</li>
+        <li>Tipo de acción: ban, kick, mute, warn, unban, unmute</li>
+        <li>Motivo de la acción (introducido por el moderador)</li>
+        <li>Fecha y hora de la acción</li>
+        <li>Duración de la sanción (si aplica)</li>
+      </ul>
+      <p>Estos registros permiten a los administradores auditar las acciones de su equipo de moderación y mantener un historial de infracciones por usuario. Son visibles únicamente para los roles con permisos de moderación dentro del servidor.</p>
+      <div class="highlight-box">
+        Los registros de moderación de un servidor son accesibles solo por los administradores y moderadores de ese servidor. CTC no expone estos datos a otros servidores ni al público.
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="policy-section" style="animation-delay:0.25s">
+    <span class="section-num">05</span>
+    <h2 class="section-heading">Sistema anti-raid y seguridad automática</h2>
+    <div class="section-body">
+      <p>Las funciones de seguridad de CTC procesan ciertos datos en tiempo real para detectar amenazas. Esto incluye:</p>
+      <ul>
+        <li>Velocidad de entrada de nuevos miembros (joins por minuto)</li>
+        <li>Frecuencia de mensajes de un mismo usuario en un corto período</li>
+        <li>Cuentas de Discord con antigüedad inferior al umbral configurado</li>
+        <li>Patrones de nombres de usuario o avatares asociados a bots de raid conocidos</li>
+        <li>Detección de menciones masivas (@everyone, @here, múltiples usuarios)</li>
+      </ul>
+      <p>Este análisis se realiza en tiempo real. <strong>No se almacena el contenido de los mensajes</strong>, solo metadatos de actividad. Cuando se desactiva el modo anti-raid, los datos temporales de la sesión se descartan.</p>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="policy-section" style="animation-delay:0.3s">
+    <span class="section-num">06</span>
+    <h2 class="section-heading">Almacenamiento, retención y seguridad</h2>
+    <div class="section-body">
+      <p>Los datos se almacenan en bases de datos seguras con acceso restringido. Aplicamos las siguientes medidas:</p>
+      <ul>
+        <li>Acceso a la base de datos limitado exclusivamente al equipo de desarrollo de CTC</li>
+        <li>Conexiones cifradas entre el bot y la base de datos</li>
+        <li>No se almacenan contraseñas, tokens de usuario ni datos de pago</li>
+      </ul>
+      <p><strong>Retención de datos:</strong></p>
+      <ul>
+        <li>Configuración del servidor: se conserva mientras el bot esté en el servidor</li>
+        <li>Historial de infracciones: se conserva hasta que un administrador lo elimine manualmente, o hasta 30 días después de que el bot sea expulsado</li>
+        <li>Datos de sorteos: se eliminan 7 días después de que el sorteo finalice</li>
+        <li>Conteo de mensajes: se puede resetear manualmente por un administrador en cualquier momento</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="policy-section" style="animation-delay:0.35s">
+    <span class="section-num">07</span>
+    <h2 class="section-heading">Compartición de datos con terceros</h2>
+    <div class="section-body">
+      <p>CTC no vende, alquila ni comparte datos con terceros, salvo en los siguientes casos excepcionales:</p>
+      <ul>
+        <li>Requerimiento legal o judicial obligatorio</li>
+        <li>Protección frente a actividad fraudulenta o abusiva que afecte a otros usuarios</li>
+        <li>Proveedores de infraestructura técnica (hosting y base de datos) bajo acuerdos de confidencialidad estrictos</li>
+      </ul>
+      <p>Toda la actividad del bot se realiza a través de la API oficial de Discord, sujeta también a la <a href="https://discord.com/privacy" target="_blank" rel="noopener">Política de Privacidad de Discord</a> y a sus <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" rel="noopener">Términos para Desarrolladores</a>.</p>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="policy-section" style="animation-delay:0.38s">
+    <span class="section-num">08</span>
+    <h2 class="section-heading">Permisos que solicita el bot</h2>
+    <div class="section-body">
+      <p>CTC solicita únicamente los permisos necesarios para sus funciones de seguridad y moderación. A continuación explicamos para qué se usa cada permiso relevante:</p>
+      <ul>
+        <li><strong>Banear y expulsar miembros:</strong> para ejecutar sanciones desde comandos de moderación</li>
+        <li><strong>Gestionar mensajes:</strong> para eliminar mensajes detectados como spam o que infrinjan las reglas configuradas</li>
+        <li><strong>Silenciar miembros (timeout):</strong> para aplicar sanciones temporales</li>
+        <li><strong>Leer historial de mensajes:</strong> únicamente para detectar patrones de spam en tiempo real, sin almacenar contenido</li>
+        <li><strong>Gestionar roles:</strong> para asignar o quitar roles en sistemas de verificación o sanciones</li>
+        <li><strong>Ver el servidor y sus canales:</strong> para ejecutar correctamente las funciones de logs y bienvenidas</li>
+        <li><strong>Enviar mensajes y embeds:</strong> para responder a comandos y publicar notificaciones del bot</li>
+      </ul>
+      <div class="highlight-box">
+        CTC nunca solicita permisos de administrador de forma innecesaria. Si el bot los tiene asignados, es decisión exclusiva del administrador del servidor al añadirlo.
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 -->
+  <div class="policy-section" style="animation-delay:0.41s">
+    <span class="section-num">09</span>
+    <h2 class="section-heading">Tus derechos como usuario</h2>
+    <div class="section-body">
+      <p>Cualquier usuario cuyos datos hayan sido procesados por CTC tiene los siguientes derechos:</p>
+      <ul>
+        <li><strong>Acceso:</strong> solicitar qué datos tiene CTC sobre ti en un servidor específico</li>
+        <li><strong>Rectificación:</strong> solicitar la corrección de datos erróneos (por ejemplo, un motivo de infracción incorrecto)</li>
+        <li><strong>Eliminación:</strong> solicitar el borrado de tus datos, incluyendo el historial de infracciones</li>
+        <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos para funciones opcionales como el conteo de mensajes</li>
+      </ul>
+      <p>Los administradores de servidor también pueden eliminar todos los datos de su servidor en cualquier momento expulsando al bot. Los datos se borrarán en un máximo de 30 días.</p>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="policy-section" style="animation-delay:0.44s">
+    <span class="section-num">10</span>
+    <h2 class="section-heading">Menores de edad</h2>
+    <div class="section-body">
+      <p>CheckTheCord no está dirigido a personas menores de 13 años. Al interactuar con el bot, confirmas que cumples con la edad mínima establecida por Discord y por la legislación aplicable en tu país.</p>
+      <p>Si detectamos o se nos informa que hemos recopilado datos de un menor de forma no intencionada, procederemos a eliminarlos de inmediato.</p>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="policy-section" style="animation-delay:0.47s">
+    <span class="section-num">11</span>
+    <h2 class="section-heading">Cambios en esta política</h2>
+    <div class="section-body">
+      <p>Podemos actualizar esta Política de Privacidad cuando sea necesario, por ejemplo al añadir nuevas funciones al bot. Cuando los cambios sean significativos, lo comunicaremos a través del servidor de soporte oficial de CTC en Discord y actualizaremos la fecha indicada al inicio de este documento.</p>
+      <p>El uso continuado del bot tras la publicación de los cambios implica la aceptación de la política actualizada.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-card">
+    <h3>¿Tienes preguntas o quieres eliminar tus datos?</h3>
+    <p>
+      Si tienes cualquier consulta sobre esta política, quieres solicitar acceso a tus datos o pedir su eliminación, únete a nuestro servidor de soporte y abre un ticket. Te responderemos lo antes posible.
+      <br /><br />
+      <a href="https://discord.gg/gYnt45XF8j" target="_blank" rel="noopener">→ Unirse al servidor de soporte en Discord</a>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">CTC</div>
+    <p>© 2025 CheckTheCord. Todos los derechos reservados.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="#">Términos de servicio</a>
+    <a href="Privacy.html" class="active">Política de privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>
