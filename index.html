@@ -4,1203 +4,311 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>checkthecord</title>
-  <link rel="icon" type="image/png" href="data:image/png;base64,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">
-  <meta name="description" content="CheckTheCord es un bot potente y confiable con funciones y comandos avanzados para optimizar y administrar tu servidor de forma eficiente. Disponible 24/7 para garantizar el mejor rendimiento. Obténlo ahora." />
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vvgXjHZH/CTC.png">
+  <meta name="description" content="CheckTheCord es un bot potente y confiable con funciones y comandos avanzados para optimizar y administrar tu servidor de forma eficiente." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --red: #4B5FE8;
-      --red-bright: #5C6EF0;
-      --red-dark: #2D3AAA;
-      --red-glow: rgba(75,95,232,0.35);
-      --bg: #0a0a0c;
-      --bg-2: #05050f;
-      --bg-card: rgba(255,255,255,0.03);
-      --border: rgba(75,95,232,0.18);
-      --text: #f0eaf0;
-      --muted: #9a8a8e;
+      --red: #4B5FE8; --red-bright: #5C6EF0; --red-dark: #2D3AAA;
+      --red-glow: rgba(75,95,232,0.35); --bg: #0a0a0c; --bg-card: rgba(255,255,255,0.03);
+      --border: rgba(75,95,232,0.18); --text: #f0eaf0; --muted: #9a8a8e; --dev: #f5c542;
     }
-
     html { overflow-x: hidden; }
+    body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
+    /* DEV BANNER */
+    .dev-banner {
+      position: relative; z-index: 200; width: 100%;
+      background: repeating-linear-gradient(-45deg, rgba(245,197,66,0.1) 0px, rgba(245,197,66,0.1) 10px, rgba(245,197,66,0.03) 10px, rgba(245,197,66,0.03) 20px);
+      border-bottom: 1px solid rgba(245,197,66,0.3);
+      padding: 0.55rem 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--dev); letter-spacing: 0.05em;
     }
+    .dev-dot { width:6px; height:6px; border-radius:50%; background:var(--dev); box-shadow:0 0 8px var(--dev); animation:pulse-dev 1.5s infinite; flex-shrink:0; }
+    @keyframes pulse-dev { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .dev-icon { animation:wrench 3s ease-in-out infinite; display:inline-block; }
+    @keyframes wrench { 0%,100%{transform:rotate(0)} 20%{transform:rotate(-20deg)} 40%{transform:rotate(20deg)} 60%{transform:rotate(0)} }
 
-    /* ─── GLOW BLOBS ─── */
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .blob-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(75,95,232,0.2) 0%, transparent 70%);
-      top: -200px; left: -200px;
-      animation: drift 12s ease-in-out infinite alternate;
-    }
-    .blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(45,58,170,0.15) 0%, transparent 70%);
-      bottom: -100px; right: -100px;
-      animation: drift 16s ease-in-out infinite alternate-reverse;
-    }
-    .blob-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(75,95,232,0.12) 0%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-    }
-    @keyframes drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(40px, 30px) scale(1.05); }
-    }
+    /* BLOBS */
+    .blob { position:fixed; border-radius:50%; filter:blur(120px); pointer-events:none; z-index:0; }
+    .blob-1 { width:600px; height:600px; background:radial-gradient(circle, rgba(75,95,232,0.2) 0%, transparent 70%); top:-200px; left:-200px; animation:drift 12s ease-in-out infinite alternate; }
+    .blob-2 { width:500px; height:500px; background:radial-gradient(circle, rgba(45,58,170,0.15) 0%, transparent 70%); bottom:-100px; right:-100px; animation:drift 16s ease-in-out infinite alternate-reverse; }
+    .blob-3 { width:300px; height:300px; background:radial-gradient(circle, rgba(75,95,232,0.12) 0%, transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); }
+    @keyframes drift { from{transform:translate(0,0) scale(1)} to{transform:translate(40px,30px) scale(1.05)} }
 
-    /* ─── NAV ─── */
-    nav {
-      position: relative;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      background: rgba(10,10,12,0.6);
-      position: sticky;
-      top: 0;
-    }
+    /* NAV */
+    nav { position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.5rem 4rem; border-bottom:1px solid var(--border); backdrop-filter:blur(12px); background:rgba(10,10,12,0.6); }
+    .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-logo img { width:40px; height:40px; border-radius:10px; box-shadow:0 0 20px var(--red-glow); object-fit:cover; }
+    .nav-logo-text { font-family:'Syne',sans-serif; font-weight:800; font-size:1.4rem; color:var(--text); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--muted); font-weight:500; font-size:0.95rem; letter-spacing:0.02em; transition:color 0.2s; position:relative; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:2px; background:var(--red-bright); border-radius:2px; box-shadow:0 0 8px var(--red-bright); transform:scaleX(0); transition:transform 0.25s ease; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
+    .nav-cta { display:flex; gap:1rem; align-items:center; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.6rem 1.3rem; border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+    .btn-ghost { color:var(--muted); border:1px solid var(--border); background:transparent; }
+    .btn-ghost:hover { color:var(--text); border-color:rgba(75,95,232,0.4); background:rgba(75,95,232,0.05); }
+    .btn-primary { background:var(--red); color:#fff; border:none; box-shadow:0 0 25px var(--red-glow), inset 0 1px 0 rgba(255,255,255,0.15); }
+    .btn-primary:hover { background:var(--red-bright); box-shadow:0 0 40px rgba(75,95,232,0.6), inset 0 1px 0 rgba(255,255,255,0.2); transform:translateY(-1px); }
+    .burger-btn { display:none; background:none; border:none; color:var(--text); cursor:pointer; flex-direction:column; gap:5px; }
+    .burger-btn span { display:block; width:24px; height:2px; background:var(--red-bright); border-radius:2px; transition:all 0.3s; }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--red), var(--red-dark));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      box-shadow: 0 0 20px var(--red-glow);
-    }
-    .nav-logo-text {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--text);
-    }
+    /* HERO */
+    .hero { position:relative; z-index:1; min-height:calc(100vh - 73px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6rem 2rem 4rem; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; padding:0.4rem 1rem; border:1px solid rgba(245,197,66,0.3); border-radius:100px; background:rgba(245,197,66,0.07); font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--dev); margin-bottom:2rem; animation:fadeUp 0.8s ease both; }
+    .eyebrow-dot { width:6px; height:6px; border-radius:50%; background:var(--dev); box-shadow:0 0 8px var(--dev); animation:pulse-dev 2s infinite; }
+    .hero-title { font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,4.5rem); font-weight:800; line-height:0.95; letter-spacing:-0.03em; margin-bottom:1.5rem; animation:fadeUp 0.8s 0.1s ease both; }
+    .hero-title .line-2 { display:block; background:linear-gradient(90deg, var(--red-bright) 0%, #ff8a6e 60%, var(--red) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(0 0 30px rgba(75,95,232,0.4)); }
+    .hero-sub { font-size:clamp(1rem,2vw,1.25rem); color:var(--muted); max-width:560px; line-height:1.7; margin-bottom:3rem; animation:fadeUp 0.8s 0.2s ease both; }
+    .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; animation:fadeUp 0.8s 0.3s ease both; }
+    .btn-discord { background:linear-gradient(135deg,rgba(88,101,242,0.28),rgba(71,82,196,0.28)); color:rgba(255,255,255,0.35); border:1px solid rgba(88,101,242,0.18); padding:0.85rem 1.8rem; font-size:1rem; border-radius:10px; cursor:not-allowed; position:relative; overflow:hidden; }
+    .btn-discord::after { content:'Próximamente'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(10,10,12,0.82); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; color:var(--dev); opacity:0; transition:opacity 0.2s; }
+    .btn-discord:hover::after { opacity:1; }
+    .btn-hero-dev { background:transparent; color:rgba(245,197,66,0.5); border:1px solid rgba(245,197,66,0.18); padding:0.85rem 1.8rem; font-size:1rem; border-radius:10px; cursor:not-allowed; }
+    .hero-stats { display:flex; gap:3rem; margin-top:5rem; padding:1.5rem 3rem; border:1px solid var(--border); border-radius:16px; background:var(--bg-card); backdrop-filter:blur(10px); animation:fadeUp 0.8s 0.4s ease both; }
+    .stat { text-align:center; }
+    .stat-num { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--muted); line-height:1; }
+    .stat-label { font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-top:0.3rem; }
+    .stat-offline { font-size:0.65rem; color:rgba(245,197,66,0.5); margin-top:0.2rem; }
+    .stat-divider { width:1px; background:var(--border); align-self:stretch; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
+    /* SECTIONS */
+    section { position:relative; z-index:1; padding:6rem 4rem; max-width:1200px; margin:0 auto; }
+    .section-tag { display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--red-bright); margin-bottom:1rem; }
+    .section-title { font-family:'Syne',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:800; line-height:1.1; letter-spacing:-0.02em; margin-bottom:1rem; }
+    .section-sub { color:var(--muted); font-size:1.05rem; max-width:480px; line-height:1.7; }
+    .hr-section { position:relative; z-index:1; border:none; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:0 4rem; }
 
-    .nav-cta {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
+    /* COMMANDS */
+    .commands-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:1.8rem; flex-wrap:wrap; gap:1rem; }
+    .commands-title { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:800; letter-spacing:-0.02em; margin-top:0.3rem; }
+    .cs-badge-big { display:inline-flex; align-items:center; gap:0.5rem; padding:0.45rem 1rem; border:1px solid rgba(245,197,66,0.4); border-radius:100px; background:rgba(245,197,66,0.08); font-size:0.7rem; font-weight:700; letter-spacing:0.15em; color:var(--dev); animation:pulse-badge 2.5s ease-in-out infinite; }
+    @keyframes pulse-badge { 0%,100%{box-shadow:0 0 0 0 rgba(245,197,66,0)} 50%{box-shadow:0 0 0 4px rgba(245,197,66,0.1)} }
+    .cs-dot { width:7px; height:7px; border-radius:50%; background:var(--dev); box-shadow:0 0 8px var(--dev); animation:pulse-dev 2s step-end infinite; flex-shrink:0; }
+    .commands-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+    .cmd-group { background:rgba(255,255,255,0.015); padding:1.5rem; }
+    .cmd-group-title { font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.04em; color:var(--text); display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; padding-bottom:0.8rem; border-bottom:1px solid var(--border); }
+    .cmd-row { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:0.6rem; padding:0.55rem 0; border-bottom:1px solid rgba(75,95,232,0.05); opacity:0.65; }
+    .cmd-row:last-child { border-bottom:none; }
+    .cmd-name { font-family:'DM Sans',monospace; font-size:0.78rem; font-weight:600; color:rgba(92,110,240,0.6); background:rgba(75,95,232,0.06); border:1px solid rgba(75,95,232,0.12); border-radius:5px; padding:0.15rem 0.5rem; white-space:nowrap; }
+    .cmd-desc { font-size:0.75rem; color:rgba(154,138,142,0.6); line-height:1.3; }
+    .cmd-badge { font-size:0.58rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.18rem 0.5rem; border-radius:100px; white-space:nowrap; flex-shrink:0; }
+    .cmd-soon { background:rgba(245,197,66,0.08); border:1px solid rgba(245,197,66,0.2); color:var(--dev); animation:soon-pulse 3s ease-in-out infinite; }
+    @keyframes soon-pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    .commands-footer { display:flex; align-items:center; gap:0.6rem; margin-top:1rem; padding:0.8rem 1.2rem; border:1px solid rgba(245,197,66,0.12); border-radius:10px; font-size:0.8rem; color:var(--muted); background:rgba(245,197,66,0.02); }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.3rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .btn-ghost {
-      color: var(--muted);
-      border: 1px solid var(--border);
-      background: transparent;
-    }
-    .btn-ghost:hover {
-      color: var(--text);
-      border-color: rgba(75,95,232,0.4);
-      background: rgba(75,95,232,0.05);
-    }
-    .btn-primary {
-      background: var(--red);
-      color: #fff;
-      border: none;
-      box-shadow: 0 0 25px var(--red-glow), inset 0 1px 0 rgba(255,255,255,0.15);
-    }
-    .btn-primary:hover {
-      background: var(--red-bright);
-      box-shadow: 0 0 40px rgba(75,95,232,0.6), inset 0 1px 0 rgba(255,255,255,0.2);
-      transform: translateY(-1px);
-    }
-    .btn-outline-red {
-      color: var(--red-bright);
-      border: 1px solid rgba(75,95,232,0.5);
-      background: rgba(75,95,232,0.08);
-    }
-    .btn-outline-red:hover {
-      background: rgba(75,95,232,0.15);
-      border-color: var(--red-bright);
-      transform: translateY(-1px);
-    }
+    /* PREMIUM SOON */
+    .premium-soon-wrap { margin-top:3rem; position:relative; border:1px solid rgba(245,197,66,0.22); border-radius:24px; padding:5rem 2rem; text-align:center; overflow:hidden; background:linear-gradient(145deg,rgba(245,197,66,0.04) 0%,transparent 60%); }
+    .premium-soon-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--dev),transparent); }
+    .premium-soon-stripe { position:absolute; inset:0; background:repeating-linear-gradient(-45deg,rgba(245,197,66,0.02) 0px,rgba(245,197,66,0.02) 10px,transparent 10px,transparent 20px); pointer-events:none; }
+    .premium-soon-inner { position:relative; z-index:1; }
+    .premium-soon-badge { display:inline-flex; align-items:center; gap:0.6rem; padding:0.45rem 1.2rem; border:1px solid rgba(245,197,66,0.35); border-radius:100px; background:rgba(245,197,66,0.08); font-size:0.72rem; font-weight:700; letter-spacing:0.18em; color:var(--dev); margin-bottom:2rem; }
+    .premium-soon-title { font-family:'Syne',sans-serif; font-size:clamp(3rem,8vw,6rem); font-weight:800; letter-spacing:-0.03em; line-height:1; margin-bottom:1rem; background:linear-gradient(90deg,#fff 30%,var(--dev) 80%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .premium-soon-price { font-family:'Syne',sans-serif; font-size:2.5rem; font-weight:800; color:rgba(240,234,240,0.07); letter-spacing:-0.04em; margin-bottom:1.5rem; }
+    .premium-soon-sub { color:var(--muted); font-size:1.05rem; max-width:460px; margin:0 auto 2.5rem; line-height:1.7; }
+    .premium-soon-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:0.65rem; margin-bottom:2.5rem; }
+    .psf-pill { padding:0.4rem 1rem; border:1px solid rgba(75,95,232,0.18); border-radius:100px; font-size:0.8rem; color:rgba(240,234,240,0.4); background:rgba(75,95,232,0.04); }
+    .premium-soon-cta { display:inline-flex; align-items:center; gap:0.75rem; padding:0.9rem 2rem; border-radius:12px; background:rgba(245,197,66,0.08); border:1px solid rgba(245,197,66,0.25); color:rgba(245,197,66,0.65); font-weight:700; font-size:0.95rem; cursor:not-allowed; letter-spacing:0.03em; }
 
-    /* ─── HERO ─── */
-    .hero {
-      position: relative;
-      z-index: 1;
-      min-height: calc(100vh - 73px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-    }
+    /* FOOTER */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:3rem 4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+    .footer-left p { color:var(--muted); font-size:0.85rem; margin-top:0.3rem; }
+    .footer-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:0.3rem; }
+    .footer-links { display:flex; flex-direction:column; gap:0.5rem; text-align:center; }
+    .footer-links h4 { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; color:var(--red-bright); margin-bottom:0.3rem; }
+    .footer-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--text); }
+    .burger-btn { display:none; background:none; border:none; color:var(--text); cursor:pointer; flex-direction:column; gap:5px; }
+    .burger-btn span { display:block; width:24px; height:2px; background:var(--red-bright); border-radius:2px; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
 
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: rgba(75,95,232,0.07);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-      margin-bottom: 2rem;
-      animation: fadeUp 0.8s ease both;
-    }
-    .eyebrow-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--red-bright);
-      box-shadow: 0 0 8px var(--red-bright);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .hero-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s 0.1s ease both;
-    }
-    .hero-title .line-2 {
-      display: block;
-      background: linear-gradient(90deg, var(--red-bright) 0%, #ff8a6e 60%, var(--red) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 30px rgba(75,95,232,0.4));
-    }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-    .btn-discord {
-      background: linear-gradient(135deg, #5865F2, #4752c4);
-      color: #fff;
-      border: none;
-      padding: 0.85rem 1.8rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(88,101,242,0.4);
-    }
-    .btn-discord:hover {
-      box-shadow: 0 0 35px rgba(88,101,242,0.6);
-      transform: translateY(-2px);
-    }
-    .btn-hero-red {
-      background: transparent;
-      color: var(--red-bright);
-      border: 1px solid rgba(75,95,232,0.45);
-      padding: 0.85rem 1.8rem;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
-    .btn-hero-red:hover {
-      background: rgba(75,95,232,0.12);
-      border-color: var(--red-bright);
-      transform: translateY(-2px);
-    }
-
-    /* HERO stats bar */
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 5rem;
-      padding: 1.5rem 3rem;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1;
-    }
-    .stat-num span { color: var(--red-bright); }
-    .stat-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-top: 0.3rem;
-    }
-    .stat-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── SECTION COMMON ─── */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 480px;
-      line-height: 1.7;
-    }
-
-    /* ─── FEATURES ─── */
-    .features-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3.5rem;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    .feat-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem 1.8rem;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-    }
-    .feat-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(75,95,232,0.08) 0%, transparent 65%);
-      opacity: 0;
-      transition: opacity 0.35s;
-    }
-    .feat-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 10%; right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--red-bright), transparent);
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-    }
-    .feat-card:hover {
-      border-color: rgba(75,95,232,0.45);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(75,95,232,0.12), 0 0 0 1px rgba(75,95,232,0.1);
-    }
-    .feat-card:hover::before { opacity: 1; }
-    .feat-card:hover::after { transform: scaleX(1); }
-
-    .feat-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      background: rgba(75,95,232,0.1);
-      border: 1px solid rgba(75,95,232,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.3rem;
-      transition: all 0.35s;
-      position: relative;
-      z-index: 1;
-    }
-    .feat-card:hover .feat-icon {
-      background: rgba(75,95,232,0.2);
-      box-shadow: 0 0 24px var(--red-glow);
-      transform: scale(1.08);
-    }
-
-    .feat-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    .feat-desc {
-      color: var(--muted);
-      font-size: 0.875rem;
-      line-height: 1.7;
-      position: relative;
-      z-index: 1;
-    }
-    .feat-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-      background: rgba(75,95,232,0.1);
-      border: 1px solid rgba(75,95,232,0.2);
-      border-radius: 100px;
-      padding: 0.2rem 0.6rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    .feat-card-wide {
-      grid-column: span 2;
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-    .feat-card-wide .feat-icon {
-      width: 64px; height: 64px;
-      font-size: 2rem;
-      flex-shrink: 0;
-      margin-bottom: 0;
-    }
-    .feat-card-wide .feat-title { font-size: 1.2rem; }
-    .feat-card-wide .feat-wide-body {}
-    .feat-bullets {
-      list-style: none;
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .feat-bullets li {
-      font-size: 0.8rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .feat-bullets li::before {
-      content: '';
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--red-bright);
-      flex-shrink: 0;
-    }
-
-    /* ─── HORIZONTAL DIVIDER ─── */
-    .hr-section {
-      position: relative;
-      z-index: 1;
-      border: none;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 4rem;
-    }
-
-    /* ─── PREMIUM ─── */
-    .premium-section-wrap {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
-    .premium-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .premium-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    /* comparison table */
-    .premium-compare {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-top: 1.5rem;
-    }
-    .compare-row {
-      display: grid;
-      grid-template-columns: 1fr 80px 80px;
-      align-items: center;
-      padding: 0.85rem 1.2rem;
-      border-bottom: 1px solid rgba(75,95,232,0.08);
-      font-size: 0.88rem;
-      transition: background 0.2s;
-    }
-    .compare-row:last-child { border-bottom: none; }
-    .compare-row:hover { background: rgba(75,95,232,0.04); }
-    .compare-row.header {
-      background: rgba(75,95,232,0.07);
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-    }
-    .compare-row .col-feat { color: var(--muted); }
-    .compare-row .col-plan {
-      text-align: center;
-      font-size: 0.85rem;
-    }
-    .check-yes { color: var(--red-bright); font-size: 1rem; }
-    .check-no  { color: rgba(255,255,255,0.15); font-size: 1rem; }
-
-    /* premium card */
-    .premium-card {
-      border: 1px solid rgba(75,95,232,0.4);
-      border-radius: 24px;
-      background: linear-gradient(145deg, rgba(75,95,232,0.1) 0%, rgba(45,58,170,0.05) 60%, transparent 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .premium-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--red-bright), transparent);
-    }
-    .premium-card::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; right: -60px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(75,95,232,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .premium-card-header {
-      padding: 2rem 2rem 1.5rem;
-      border-bottom: 1px solid rgba(75,95,232,0.12);
-    }
-    .premium-card-body { padding: 1.5rem 2rem 2rem; }
-
-    .price-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      background: var(--red);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 0 20px var(--red-glow);
-    }
-    .price-display {
-      display: flex;
-      align-items: baseline;
-      gap: 0.3rem;
-      margin-bottom: 0.4rem;
-    }
-    .price-currency { font-size: 1.3rem; font-weight: 600; color: var(--red-bright); }
-    .price-amount {
-      font-family: 'Syne', sans-serif;
-      font-size: 4.5rem;
-      font-weight: 800;
-      line-height: 1;
-      color: var(--text);
-    }
-    .price-period { color: var(--muted); font-size: 0.9rem; align-self: center; }
-
-    .check-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .check-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.92rem;
-      color: var(--muted);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(75,95,232,0.06);
-    }
-    .check-list li:last-child { border-bottom: none; }
-    .check-list li .ck-icon {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: rgba(75,95,232,0.15);
-      border: 1px solid rgba(75,95,232,0.3);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      color: var(--red-bright);
-    }
-
-    .premium-perks {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .perk {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1rem 1.2rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .perk:hover {
-      border-color: rgba(75,95,232,0.35);
-      background: rgba(75,95,232,0.04);
-    }
-    .perk-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .perk-text strong {
-      display: block;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-    .perk-text span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .footer-left p { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
-    }
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
-    }
-    .footer-links h4 {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      color: var(--red-bright);
-      margin-bottom: 0.3rem;
-    }
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--text); }
-
-    /* ─── MOBILE BURGER ─── */
-    .burger-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .burger-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--red-bright);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    /* ─── COMMANDS ─── */
-    .commands-section {}
-    .commands-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 1.8rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .commands-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-top: 0.3rem;
-    }
-    .cs-badge-big {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 1rem;
-      border: 1px solid rgba(75,95,232,0.4);
-      border-radius: 100px;
-      background: rgba(75,95,232,0.08);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--red-bright);
-      animation: pulse-border 2.5s ease-in-out infinite;
-    }
-    @keyframes pulse-border {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(75,95,232,0); }
-      50%       { box-shadow: 0 0 0 4px rgba(75,95,232,0.12); }
-    }
-    .cs-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--red-bright);
-      box-shadow: 0 0 8px var(--red-bright);
-      animation: pulse 2s step-end infinite;
-      flex-shrink: 0;
-    }
-    .commands-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .cmd-group {
-      background: rgba(255,255,255,0.015);
-      padding: 1.5rem;
-    }
-    .cmd-group-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .cmd-row {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid rgba(75,95,232,0.05);
-    }
-    .cmd-row:last-child { border-bottom: none; }
-    .cmd-name {
-      font-family: 'DM Sans', monospace;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--red-bright);
-      background: rgba(75,95,232,0.1);
-      border: 1px solid rgba(75,95,232,0.2);
-      border-radius: 5px;
-      padding: 0.15rem 0.5rem;
-      white-space: nowrap;
-    }
-    .cmd-desc {
-      font-size: 0.75rem;
-      color: var(--muted);
-      line-height: 1.3;
-    }
-    .cmd-badge {
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 0.18rem 0.5rem;
-      border-radius: 100px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .cmd-available {
-      background: rgba(61,220,132,0.1);
-      border: 1px solid rgba(61,220,132,0.25);
-      color: #3ddc84;
-    }
-    .cmd-soon {
-      background: rgba(75,95,232,0.1);
-      border: 1px solid rgba(75,95,232,0.25);
-      color: var(--red-bright);
-      animation: soon-pulse 3s ease-in-out infinite;
-    }
-    @keyframes soon-pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.55; }
-    }
-    .commands-footer {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 1rem;
-      padding: 0.8rem 1.2rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: rgba(75,95,232,0.03);
-    }
-    @media (max-width: 900px) {
-      .commands-grid { grid-template-columns: 1fr; }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links, .nav-cta .btn-ghost { display: none; }
-      .burger-btn { display: flex; }
-      section { padding: 4rem 1.5rem; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feat-card-wide { grid-column: span 1; flex-direction: column; }
-      .feat-card-wide .feat-icon { margin-bottom: 1rem; }
-      .premium-top { grid-template-columns: 1fr; }
-      .premium-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.5rem; padding: 1.2rem 1.5rem; flex-wrap: wrap; justify-content: center; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
-      .hr-section { margin: 0 1.5rem; }
-      .compare-row { grid-template-columns: 1fr 60px 60px; font-size: 0.8rem; }
-    }
-    @media (max-width: 500px) {
-      .hero-buttons { flex-direction: column; align-items: stretch; }
-      .hero-buttons a { text-align: center; justify-content: center; }
-    }
+    @media (max-width:900px) {
+      nav { padding:1.2rem 1.5rem; }
+      .nav-links, .nav-cta .btn-ghost { display:none; }
+      .burger-btn { display:flex; }
+      section { padding:4rem 1.5rem; }
+      .commands-grid { grid-template-columns:1fr; }
+      .hero-stats { gap:1.5rem; padding:1.2rem 1.5rem; flex-wrap:wrap; justify-content:center; }
+      footer { padding:2rem 1.5rem; flex-direction:column; align-items:flex-start; }
+      .hr-section { margin:0 1.5rem; }
+    }
+    @media (max-width:500px) {
+      .hero-buttons { flex-direction:column; align-items:stretch; }
+      .hero-buttons a { text-align:center; justify-content:center; }
+    }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes sectionFlash { 0%{box-shadow:inset 0 0 0px 0px transparent} 30%{box-shadow:inset 0 0 60px 0px rgba(75,95,232,0.08)} 100%{box-shadow:inset 0 0 0px 0px transparent} }
+    .section-highlight { animation:sectionFlash 1.2s ease forwards; }
   </style>
 </head>
 <body>
 
-<!-- ambient blobs -->
+<!-- DEV BANNER -->
+<div class="dev-banner">
+  <span class="dev-dot"></span>
+  <span class="dev-icon">🔧</span>
+  <span><strong style="color:#fff;">MODO DESARROLLO</strong> &mdash; El bot está offline. Las funciones mostradas son las planeadas.</span>
+  <span class="dev-icon">🔧</span>
+  <span class="dev-dot"></span>
+</div>
+
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="data:image/png;base64,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" style="width:40px;height:40px;border-radius:10px;box-shadow:0 0 20px rgba(75,95,232,0.35);" alt="CTC Logo"/>
+    <img src="https://i.ibb.co/vvgXjHZH/CTC.png" alt="CTC Logo" />
     <span class="nav-logo-text">CTC</span>
   </a>
-
   <ul class="nav-links">
     <li><a href="#caracteristicas">Documentación</a></li>
-    <!-- data-role="support" → se rellenará con invitacionServer desde config.json -->
     <li><a href="javascript:void(0)" data-role="support">Soporte</a></li>
     <li><a href="#premium">Premium</a></li>
   </ul>
-
   <div class="nav-cta">
-    <!-- data-role="support" → se rellenará con invitacionServer desde config.json -->
     <a href="javascript:void(0)" class="btn btn-ghost" data-role="support">Soporte</a>
-    <a href="#" class="btn btn-primary">⭐ Premium</a>
-    <button class="burger-btn" id="burger" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#premium" class="btn btn-primary">⭐ Premium</a>
+    <button class="burger-btn" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<div class="hero" style="padding-top: 7rem;">
+<!-- HERO -->
+<div class="hero" style="padding-top:7rem;">
   <div class="hero-eyebrow">
     <span class="eyebrow-dot"></span>
-    Nuevo · Versión 3.0 disponible
+    En desarrollo · Versión 3.0 próximamente
   </div>
-
   <h1 class="hero-title">
     Lleva tu servidor<br>
     <span class="line-2">al siguiente nivel.</span>
   </h1>
-
   <p class="hero-sub">
     CheckTheCord es un bot potente con sorteos avanzados, conteo de mensajes, bienvenidas personalizables y mucho más para tu comunidad de Discord.
   </p>
-
   <div class="hero-buttons">
-    <!-- data-role="botlink" → se rellenará con BotLink desde config.json -->
-    <a href="javascript:void(0)" class="btn btn-discord" data-role="botlink" style="font-size:1rem; padding: .85rem 1.8rem;">
-      <svg width="20" height="20" viewBox="0 -28.5 256 256" fill="#fff">
+    <a href="javascript:void(0)" class="btn btn-discord">
+      <svg width="20" height="20" viewBox="0 -28.5 256 256" fill="currentColor">
         <path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"/>
       </svg>
       Añadir a Discord
     </a>
-    <a href="#" class="btn btn-hero-red" style="font-size:1rem;">
-      ✦ Ver Premium
-    </a>
+    <a href="javascript:void(0)" class="btn btn-hero-dev">🔧 En construcción</a>
   </div>
-
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num" id="stat-servers">—</div>
+      <div class="stat-num">—</div>
       <div class="stat-label">Servidores</div>
+      <div class="stat-offline">⚠ Offline</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat">
-      <div class="stat-num" id="stat-users">—</div>
+      <div class="stat-num">—</div>
       <div class="stat-label">Usuarios</div>
+      <div class="stat-offline">⚠ Offline</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ FEATURES ═══ -->
 <hr class="hr-section" />
 
+<!-- COMMANDS -->
 <section id="caracteristicas">
-  <!-- COMMANDS TABLE -->
-  <div class="commands-section reveal" style="margin-top: 3.5rem; transition-delay: 0.2s;">
+  <div class="reveal" style="transition-delay:0.2s;">
     <div class="commands-header">
       <div>
         <span class="section-tag">Comandos</span>
         <h3 class="commands-title">Lista de comandos</h3>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:0.4rem;">Funciones planeadas — se activarán conforme avance el desarrollo.</p>
       </div>
-      <div class="cs-badge-big">
-        <span class="cs-dot"></span>
-        EN CONSTRUCCIÓN
-      </div>
+      <div class="cs-badge-big"><span class="cs-dot"></span>EN DESARROLLO</div>
     </div>
-
     <div class="commands-grid">
-
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🛡️</span> Moderación
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/ban</code>
-          <span class="cmd-desc">Banea a un usuario del servidor</span>
-          <span class="cmd-badge cmd-available">Disponible</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/kick</code>
-          <span class="cmd-desc">Expulsa a un usuario temporalmente</span>
-          <span class="cmd-badge cmd-available">Disponible</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/mute</code>
-          <span class="cmd-desc">Silencia a un usuario con duración</span>
-          <span class="cmd-badge cmd-available">Disponible</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/warn</code>
-          <span class="cmd-desc">Emite una advertencia oficial</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/infractions</code>
-          <span class="cmd-desc">Ver historial de infracciones de un usuario</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
+        <div class="cmd-group-title"><span>🛡️</span> Moderación</div>
+        <div class="cmd-row"><code class="cmd-name">/ban</code><span class="cmd-desc">Banea a un usuario del servidor</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/kick</code><span class="cmd-desc">Expulsa a un usuario temporalmente</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/mute</code><span class="cmd-desc">Silencia a un usuario con duración</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/warn</code><span class="cmd-desc">Emite una advertencia oficial</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/infractions</code><span class="cmd-desc">Ver historial de infracciones de un usuario</span><span class="cmd-badge cmd-soon">Próx.</span></div>
       </div>
-
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🔒</span> Seguridad
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/lockdown</code>
-          <span class="cmd-desc">Bloquea todos los canales del servidor</span>
-          <span class="cmd-badge cmd-available">Disponible</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/antispam</code>
-          <span class="cmd-desc">Configura el filtro anti-spam</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/raid-mode</code>
-          <span class="cmd-desc">Activa el modo anti-raid avanzado</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/verify</code>
-          <span class="cmd-desc">Sistema de verificación CAPTCHA</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
+        <div class="cmd-group-title"><span>🔒</span> Seguridad</div>
+        <div class="cmd-row"><code class="cmd-name">/lockdown</code><span class="cmd-desc">Bloquea todos los canales del servidor</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/antispam</code><span class="cmd-desc">Configura el filtro anti-spam</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/raid-mode</code><span class="cmd-desc">Activa el modo anti-raid avanzado</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/verify</code><span class="cmd-desc">Sistema de verificación CAPTCHA</span><span class="cmd-badge cmd-soon">Próx.</span></div>
       </div>
-
       <div class="cmd-group">
-        <div class="cmd-group-title">
-          <span>🎉</span> Comunidad
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/giveaway</code>
-          <span class="cmd-desc">Crea un sorteo con opciones avanzadas</span>
-          <span class="cmd-badge cmd-available">Disponible</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/leaderboard</code>
-          <span class="cmd-desc">Muestra el top de miembros activos</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/welcome set</code>
-          <span class="cmd-desc">Configura el mensaje de bienvenida</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
-        <div class="cmd-row">
-          <code class="cmd-name">/poll</code>
-          <span class="cmd-desc">Crea encuestas interactivas</span>
-          <span class="cmd-badge cmd-soon">Coming Soon</span>
-        </div>
+        <div class="cmd-group-title"><span>🎉</span> Comunidad</div>
+        <div class="cmd-row"><code class="cmd-name">/giveaway</code><span class="cmd-desc">Crea un sorteo con opciones avanzadas</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/leaderboard</code><span class="cmd-desc">Muestra el top de miembros activos</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/welcome set</code><span class="cmd-desc">Configura el mensaje de bienvenida</span><span class="cmd-badge cmd-soon">Próx.</span></div>
+        <div class="cmd-row"><code class="cmd-name">/poll</code><span class="cmd-desc">Crea encuestas interactivas</span><span class="cmd-badge cmd-soon">Próx.</span></div>
       </div>
-
     </div>
-
     <div class="commands-footer">
       <span class="cs-dot"></span>
       Más comandos en camino · Únete al servidor para seguir las novedades
-      <!-- data-role="support" → se rellenará con invitacionServer desde config.json -->
-      <a href="javascript:void(0)" data-role="support" style="color: var(--red-bright); text-decoration: none; font-weight: 600; margin-left: 0.5rem;">→ Discord</a>
+      <a href="javascript:void(0)" data-role="support" style="color:var(--red-bright);text-decoration:none;font-weight:600;margin-left:0.5rem;">→ Discord</a>
     </div>
   </div>
-
 </section>
 
-<!-- ═══ PREMIUM ═══ -->
 <hr class="hr-section" />
 
+<!-- PREMIUM -->
 <section id="premium">
   <div class="reveal">
     <span class="section-tag">Premium</span>
     <h2 class="section-title">Potencia sin límites.</h2>
-    <p class="section-sub">Desbloquea el potencial completo de CheckTheCord y lleva tu servidor a un nivel profesional.</p>
+    <p class="section-sub">El plan Premium de CheckTheCord está en camino. Muy pronto podrás desbloquear el potencial completo de tu servidor.</p>
   </div>
-
-  <div class="premium-top reveal" style="margin-top: 3rem; transition-delay: 0.1s;">
-
-    <!-- Comparison table -->
-    <div>
-      <div class="premium-compare">
-        <div class="compare-row header">
-          <span>Función</span>
-          <span style="text-align:center;">Free</span>
-          <span style="text-align:center; color: var(--red-bright);">Premium</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Moderación básica</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Sorteos (hasta 2)</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Bienvenidas simples</span>
-          <span class="col-plan check-yes">✓</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Sorteos ilimitados</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Anti-raid avanzado</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Dashboard de analytics</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Bienvenidas con imagen</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Música sin interrupciones</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Soporte prioritario 24/7</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
-        <div class="compare-row">
-          <span class="col-feat">Acceso anticipado a features</span>
-          <span class="col-plan check-no">✕</span>
-          <span class="col-plan check-yes">✓</span>
-        </div>
+  <div class="premium-soon-wrap reveal" style="transition-delay:0.1s;">
+    <div class="premium-soon-stripe"></div>
+    <div class="premium-soon-inner">
+      <div class="premium-soon-badge"><span class="dev-dot"></span>🔧 &nbsp;EN DESARROLLO</div>
+      <div class="premium-soon-title">MUY PRONTO</div>
+      <div class="premium-soon-price">€4 / mes</div>
+      <p class="premium-soon-sub">Estamos preparando algo increíble. El plan Premium incluirá funciones exclusivas, soporte prioritario y acceso anticipado a todo lo nuevo.</p>
+      <div class="premium-soon-pills">
+        <span class="psf-pill">✦ Sorteos ilimitados</span>
+        <span class="psf-pill">✦ Música sin colas</span>
+        <span class="psf-pill">✦ Anti-raid avanzado</span>
+        <span class="psf-pill">✦ Analytics completo</span>
+        <span class="psf-pill">✦ Bienvenidas con imagen</span>
+        <span class="psf-pill">✦ Soporte 24/7</span>
+        <span class="psf-pill">✦ Features anticipadas</span>
+        <span class="psf-pill">✦ Rol exclusivo</span>
       </div>
+      <div class="premium-soon-cta">🔧 &nbsp;Disponible cuando el bot esté listo</div>
+      <p style="color:rgba(154,138,142,0.45);font-size:0.78rem;margin-top:1.2rem;">
+        Únete al servidor de soporte para ser notificado en el lanzamiento ·
+        <a href="javascript:void(0)" data-role="support" style="color:rgba(245,197,66,0.55);text-decoration:none;font-weight:600;">→ Discord</a>
+      </p>
     </div>
-
-    <!-- Premium card -->
-    <div>
-      <div class="premium-card">
-        <div class="premium-card-header">
-          <span class="price-badge">✦ PREMIUM</span>
-          <div class="price-display">
-            <span class="price-currency">€</span>
-            <span class="price-amount">4</span>
-            <span class="price-period">/ mes</span>
-          </div>
-          <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.6;">
-            Un café al mes por un servidor de élite. Sin compromisos, cancela cuando quieras.
-          </p>
-        </div>
-        <div class="premium-card-body">
-          <ul class="check-list">
-            <li><span class="ck-icon">✓</span>Sorteos y giveaways ilimitados</li>
-            <li><span class="ck-icon">✓</span>Música sin interrupciones ni colas</li>
-            <li><span class="ck-icon">✓</span>Dashboard con analytics completo</li>
-            <li><span class="ck-icon">✓</span>Anti-raid y protección avanzada</li>
-            <li><span class="ck-icon">✓</span>Soporte prioritario 24/7</li>
-            <li><span class="ck-icon">✓</span>Acceso anticipado a nuevas features</li>
-            <li><span class="ck-icon">✓</span>Rol exclusivo en servidor de soporte</li>
-          </ul>
-          <a href="#" class="btn btn-primary" style="width:100%; justify-content:center; padding: 1rem; font-size: 1rem; border-radius: 12px;">
-            ✦ Activar Premium
-          </a>
-          <p style="text-align:center; color: var(--muted); font-size: 0.75rem; margin-top: 0.8rem;">Cancela cuando quieras · Sin compromisos</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="footer-logo">CTC</div>
     <p>Hecho con ❤️ para comunidades de Discord</p>
-    <p style="margin-top: 0.2rem;">© 2025 CheckTheCord – WHIZY SAS</p>
+    <p style="margin-top:0.2rem;">© 2025 CheckTheCord – WHIZY SAS</p>
   </div>
-
   <div class="footer-links">
     <h4>Suscripción</h4>
     <a href="#">Gestionar suscripción</a>
   </div>
-
-  <div class="footer-links" style="text-align: right;">
+  <div class="footer-links" style="text-align:right;">
     <h4>Legal</h4>
     <a href="Privacy.html">Política de privacidad</a>
     <a href="#">Términos de servicio</a>
@@ -1208,223 +316,44 @@
 </footer>
 
 <script>
-  // ══════════════════════════════════════════════════════════════════
-  // ✏️  CONFIGURA AQUÍ TUS LINKS — sin necesidad de config.json
-  // ══════════════════════════════════════════════════════════════════
   const CTC_CONFIG = {
-    BotLink:          'https://discord.com/oauth2/authorize?client_id=1451678453232308234&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdenzells.github.io%2Fcheckthecord%2F%23&integration_type=0&scope=guilds.join+identify+bot+applications.commands+guilds+messages.read+email',  // ← URL de invitación del bot
-    invitacionServer: 'https://discord.gg/rhyuRU9yXq',  // ← URL del servidor de soporte
+    BotLink: 'https://discord.com/oauth2/authorize?client_id=1451678453232308234&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdenzells.github.io%2Fcheckthecord%2F%23&integration_type=0&scope=guilds.join+identify+bot+applications.commands+guilds+messages.read+email',
+    invitacionServer: 'https://discord.gg/rhyuRU9yXq',
   };
-  // ══════════════════════════════════════════════════════════════════
-
-  // Aplica los links a todos los botones con data-role
   function applyLinks() {
-    document.querySelectorAll('[data-role="botlink"]').forEach(el => {
-      el.href   = CTC_CONFIG.BotLink;
-      el.target = '_blank';
-      el.rel    = 'noopener noreferrer';
-    });
-    document.querySelectorAll('[data-role="support"]').forEach(el => {
-      el.href   = CTC_CONFIG.invitacionServer;
-      el.target = '_blank';
-      el.rel    = 'noopener noreferrer';
-    });
+    document.querySelectorAll('[data-role="botlink"]').forEach(el => { el.href = CTC_CONFIG.BotLink; el.target='_blank'; el.rel='noopener noreferrer'; });
+    document.querySelectorAll('[data-role="support"]').forEach(el => { el.href = CTC_CONFIG.invitacionServer; el.target='_blank'; el.rel='noopener noreferrer'; });
   }
-
-  // Ejecutar inmediatamente al cargar
   applyLinks();
-
-  function formatNum(n) {
-    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-    if (n >= 1000)    return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    return n.toString();
-  }
-
-  function animateCount(el, target) {
-    const duration = 1200;
-    const start = performance.now();
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = formatNum(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = formatNum(target);
-    };
-    requestAnimationFrame(step);
-  }
-
-  // ── Estadísticas del bot (requiere proxy backend — no funciona directo desde browser por CORS) ──
-  // Para mostrar estadísticas reales, crea un endpoint en tu servidor que consulte
-  // la API de Discord y devuelva { servers: N, users: N }, luego apunta STATS_API_URL a él.
-  const STATS_API_URL = 'https://raw.githubusercontent.com/denzells/checkthecord/main/stats.json'; // Ej: 'https://checkthecord.xyz/api/stats'
-
-  async function initStats() {
-    const serverEl = document.getElementById('stat-servers');
-    const userEl   = document.getElementById('stat-users');
-
-    if (!STATS_API_URL) {
-      serverEl.textContent = '—';
-      userEl.textContent   = '—';
-      return;
-    }
-
-    try {
-      const res  = await fetch(STATS_API_URL);
-      const data = await res.json();
-      if (data.servers != null) animateCount(serverEl, data.servers);
-      if (data.users   != null) animateCount(userEl,   data.users);
-    } catch(e) {
-      serverEl.textContent = '—';
-      userEl.textContent   = '—';
-    }
-  }
-
-  initStats();
-  setInterval(initStats, 5 * 60 * 1000);
-
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} }); }, {threshold:0.12});
+  reveals.forEach(r => observer.observe(r));
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => {
-        target.classList.add('section-highlight');
-        setTimeout(() => target.classList.remove('section-highlight'), 1200);
-      }, 500);
+      const t = document.querySelector(this.getAttribute('href')); if(!t) return;
+      e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'});
+      setTimeout(() => { t.classList.add('section-highlight'); setTimeout(() => t.classList.remove('section-highlight'), 1200); }, 500);
     });
   });
-
-  // Active nav link on scroll
-  const sections = [
-    { id: 'caracteristicas', link: document.querySelector('a[href="#caracteristicas"]') },
-    { id: 'premium',         link: document.querySelector('a[href="#premium"]') },
-  ];
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const match = sections.find(s => s.id === entry.target.id);
-      if (match?.link) {
-        if (entry.isIntersecting) match.link.classList.add('active');
-        else match.link.classList.remove('active');
-      }
-    });
-  }, { threshold: 0.3 });
-  sections.forEach(s => {
-    const el = document.getElementById(s.id);
-    if (el) navObserver.observe(el);
-  });
-
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => observer.observe(r));
-
-  // Stagger feat-cards
-  document.querySelectorAll('.feat-card').forEach((c, i) => {
-    c.style.transitionDelay = (i * 0.07) + 's';
-  });
-
-  // Burger menu (mobile)
+  const sections = [{id:'caracteristicas',link:document.querySelector('a[href="#caracteristicas"]')},{id:'premium',link:document.querySelector('a[href="#premium"]')}];
+  const navObs = new IntersectionObserver(entries => { entries.forEach(entry => { const m=sections.find(s=>s.id===entry.target.id); if(m?.link){entry.isIntersecting?m.link.classList.add('active'):m.link.classList.remove('active');} }); },{threshold:0.3});
+  sections.forEach(s => { const el=document.getElementById(s.id); if(el) navObs.observe(el); });
   const burger = document.getElementById('burger');
   let mobileMenu = null;
-
   burger?.addEventListener('click', () => {
     if (!mobileMenu) {
       mobileMenu = document.createElement('div');
-      mobileMenu.style.cssText = `
-        position: fixed; top: 73px; left: 0; right: 0; z-index: 99;
-        background: rgba(10,10,12,0.97);
-        border-bottom: 1px solid rgba(75,95,232,0.2);
-        padding: 1.5rem 2rem;
-        display: flex; flex-direction: column; gap: 1.2rem;
-        backdrop-filter: blur(20px);
-        animation: slideDown 0.25s ease;
-      `;
-      // Menú móvil: Documentación (scroll), Soporte (invitacionServer), Premium (scroll)
-      const labels = ['Documentación', 'Soporte', 'Premium'];
-      const links  = ['#caracteristicas', 'support', '#premium'];
-      labels.forEach((label, i) => {
+      mobileMenu.style.cssText = 'position:fixed;top:73px;left:0;right:0;z-index:99;background:rgba(10,10,12,0.97);border-bottom:1px solid rgba(75,95,232,0.2);padding:1.5rem 2rem;display:flex;flex-direction:column;gap:1.2rem;backdrop-filter:blur(20px);animation:slideDown 0.25s ease;';
+      [['Documentación','#caracteristicas'],['Soporte','support'],['Premium','#premium']].forEach(([label,href]) => {
         const a = document.createElement('a');
-        if (links[i] === 'support') {
-          // Será sobreescrito por applyLinks si config carga
-          a.href = 'javascript:void(0)';
-          a.setAttribute('data-role', 'support');
-          a.target = '_blank';
-        } else {
-          a.href = links[i];
-        }
-        a.textContent = label;
-        a.style.cssText = 'color: #9a8a8e; font-size: 1.1rem; text-decoration: none; font-weight: 500;';
-        a.addEventListener('mouseenter', () => a.style.color = '#f0eaf0');
-        a.addEventListener('mouseleave', () => a.style.color = '#9a8a8e');
+        if(href==='support'){a.href='javascript:void(0)';a.setAttribute('data-role','support');a.target='_blank';}else{a.href=href;}
+        a.textContent=label; a.style.cssText='color:#9a8a8e;font-size:1.1rem;text-decoration:none;font-weight:500;';
+        a.addEventListener('mouseenter',()=>a.style.color='#f0eaf0'); a.addEventListener('mouseleave',()=>a.style.color='#9a8a8e');
         mobileMenu.appendChild(a);
       });
-      document.body.appendChild(mobileMenu);
-      // Aplicar links al menú móvil recién creado
-      applyLinks();
-    } else {
-      mobileMenu.remove();
-      mobileMenu = null;
-    }
+      document.body.appendChild(mobileMenu); applyLinks();
+    } else { mobileMenu.remove(); mobileMenu=null; }
   });
 </script>
-
-<style>
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ─── SCROLL HIGHLIGHT ─── */
-  @keyframes sectionFlash {
-    0%   { box-shadow: inset 0 0 0px 0px transparent; }
-    30%  { box-shadow: inset 0 0 60px 0px rgba(75,95,232,0.08); }
-    100% { box-shadow: inset 0 0 0px 0px transparent; }
-  }
-  .section-highlight {
-    animation: sectionFlash 1.2s ease forwards;
-  }
-
-  /* ─── NAV ACTIVE ─── */
-  .nav-links a.active {
-    color: var(--text);
-    position: relative;
-  }
-  .nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 2px;
-    background: var(--red-bright);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--red-bright);
-  }
-  .nav-links a {
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 2px;
-    background: var(--red-bright);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--red-bright);
-    transform: scaleX(0);
-    transition: transform 0.25s ease;
-  }
-  .nav-links a:hover::after {
-    transform: scaleX(1);
-  }
-</style>
 </body>
 </html>
-
-
-
