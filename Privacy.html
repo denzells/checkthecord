@@ -3,338 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>checkthecord</title>
-  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <title>Privacidad — CheckTheCord</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vvgXjHZH/CTC.png">
+  <meta name="description" content="Política de privacidad de CheckTheCord. Qué datos usamos, por qué y cómo los protegemos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue: #4B5FE8;
-      --blue-bright: #5C6EF0;
-      --blue-dark: #2D3AAA;
-      --blue-glow: rgba(75,95,232,0.35);
-      --bg: #0a0a0c;
-      --bg-card: rgba(255,255,255,0.03);
-      --border: rgba(75,95,232,0.18);
-      --text: #f0eaf0;
-      --muted: #9a8a8e;
+      --bg: #050508;
+      --bg-2: #0a0a10;
+      --card: rgba(255,255,255,0.028);
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(0,229,160,0.25);
+      --accent: #00E5A0;
+      --accent-dim: rgba(0,229,160,0.10);
+      --accent-glow: rgba(0,229,160,0.28);
+      --text: #E8E8F2;
+      --muted: #5A5A72;
+      --muted-2: #3a3a50;
+      --dev: #F5C542;
+      --dev-dim: rgba(245,197,66,0.1);
     }
 
     html { overflow-x: hidden; }
-
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Outfit', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    .blob {
+    body::before {
+      content: '';
       position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
       pointer-events: none;
       z-index: 0;
     }
-    .blob-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(75,95,232,0.18) 0%, transparent 70%);
-      top: -200px; left: -200px;
-      animation: drift 12s ease-in-out infinite alternate;
+
+    .glow-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .glow {
+      position: absolute; border-radius: 50%; filter: blur(150px);
+      animation: drift 18s ease-in-out infinite alternate;
     }
-    .blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(45,58,170,0.13) 0%, transparent 70%);
-      bottom: -100px; right: -100px;
-      animation: drift 16s ease-in-out infinite alternate-reverse;
-    }
-    @keyframes drift {
-      from { transform: translate(0,0) scale(1); }
-      to   { transform: translate(40px,30px) scale(1.05); }
-    }
+    .glow-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%); top: -200px; left: -150px; }
+    .glow-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,100,255,0.05) 0%, transparent 70%); bottom: 0; right: -100px; animation-delay: -8s; animation-duration: 22s; }
+    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 40px); } }
 
     /* NAV */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      background: rgba(10,10,12,0.6);
+      backdrop-filter: blur(20px);
+      background: rgba(5,5,8,0.7);
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
+    .nav-logo-text { font-family: 'Audiowide', sans-serif; font-size: 1.1rem; color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.2rem; border-radius: 6px;
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; cursor: pointer; transition: all 0.2s; border: none;
     }
-    .nav-logo-text {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--text);
-    }
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.3rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      background: transparent;
-      transition: all 0.2s;
-    }
-    .nav-back:hover {
-      color: var(--text);
-      border-color: rgba(75,95,232,0.4);
-      background: rgba(75,95,232,0.05);
-    }
+    .btn-ghost { color: var(--muted); background: transparent; border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-bright); background: var(--accent-dim); }
 
     /* PAGE HERO */
     .page-hero {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       padding: 5rem 4rem 3rem;
-      max-width: 920px;
-      margin: 0 auto;
+      max-width: 960px; margin: 0 auto;
       animation: fadeUp 0.6s ease both;
     }
-    .page-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: rgba(75,95,232,0.07);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue-bright);
-      margin-bottom: 1.5rem;
+    .page-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border-bright); border-radius: 100px;
+      background: var(--accent-dim);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.75rem;
     }
     .page-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+      font-family: 'Audiowide', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 0.85rem;
     }
-    .page-title span {
-      background: linear-gradient(90deg, var(--blue-bright) 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .page-meta {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
+    .page-title .accent-word { color: var(--accent); text-shadow: 0 0 50px var(--accent-glow); }
+    .page-meta { color: var(--muted); font-size: 0.82rem; font-family: 'Space Mono', monospace; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
 
     /* CONTENT */
     .content-wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 920px;
-      margin: 0 auto;
+      position: relative; z-index: 1;
+      max-width: 960px; margin: 0 auto;
       padding: 0 4rem 6rem;
     }
     .divider {
-      border: none;
-      height: 1px;
+      border: none; height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin-bottom: 3rem;
     }
 
+    /* SECTION CARDS */
     .policy-section {
-      margin-bottom: 1.2rem;
-      padding: 2rem 2.2rem;
+      margin-bottom: 1px;
+      padding: 2.2rem 2.4rem;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--bg-card);
-      transition: border-color 0.3s;
-      animation: fadeUp 0.6s ease both;
+      background: var(--card);
+      transition: border-color 0.3s, background 0.3s;
+      animation: fadeUp 0.55s ease both;
     }
+    .policy-section:first-of-type { border-radius: 16px 16px 0 0; }
+    .policy-section:last-of-type { border-radius: 0 0 16px 16px; margin-bottom: 0; }
+    .policy-section:only-of-type { border-radius: 16px; }
     .policy-section:hover {
-      border-color: rgba(75,95,232,0.35);
+      border-color: var(--border-bright);
+      background: rgba(0,229,160,0.018);
     }
 
     .section-num {
       display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--blue-bright);
-      background: rgba(75,95,232,0.1);
-      border: 1px solid rgba(75,95,232,0.2);
-      border-radius: 100px;
-      padding: 0.2rem 0.7rem;
-      margin-bottom: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+      color: var(--accent);
+      background: var(--accent-dim); border: 1px solid var(--border-bright);
+      border-radius: 100px; padding: 0.18rem 0.65rem; margin-bottom: 0.85rem;
     }
     .section-heading {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.9rem;
-      color: var(--text);
+      font-family: 'Audiowide', sans-serif;
+      font-size: 1rem; font-weight: 400;
+      margin-bottom: 1rem; color: var(--text);
     }
-    .section-body {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.8;
-    }
-    .section-body p + p { margin-top: 0.75rem; }
-    .section-body strong { color: var(--text); }
-    .section-body a {
-      color: var(--blue-bright);
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .section-body { color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+    .section-body p + p { margin-top: 0.7rem; }
+    .section-body strong { color: var(--text); font-weight: 600; }
+    .section-body a { color: var(--accent); text-decoration: none; font-weight: 600; }
     .section-body a:hover { text-decoration: underline; }
 
     .section-body ul {
-      list-style: none;
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
+      list-style: none; margin-top: 0.9rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
     }
     .section-body ul li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      font-size: 0.9rem;
+      display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.88rem;
     }
     .section-body ul li::before {
       content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--blue-bright);
-      flex-shrink: 0;
-      margin-top: 0.56rem;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 0.6rem;
+      box-shadow: 0 0 6px var(--accent-glow);
     }
 
     .highlight-box {
-      margin-top: 1.1rem;
-      padding: 1rem 1.2rem;
-      border-radius: 10px;
-      border-left: 3px solid var(--blue-bright);
-      background: rgba(75,95,232,0.06);
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.7;
+      margin-top: 1.1rem; padding: 1rem 1.2rem;
+      border-radius: 8px;
+      border-left: 2px solid var(--accent);
+      background: var(--accent-dim);
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
     }
 
     .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem;
     }
     .mini-card {
       padding: 1rem 1.1rem;
-      border: 1px solid rgba(75,95,232,0.15);
-      border-radius: 12px;
-      background: rgba(75,95,232,0.04);
+      border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.25s;
     }
+    .mini-card:hover { border-color: var(--border-bright); }
     .mini-card-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--blue-bright);
-      margin-bottom: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--accent); margin-bottom: 0.45rem; letter-spacing: 0.04em;
     }
-    .mini-card p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .mini-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
 
     /* CONTACT CARD */
     .contact-card {
-      margin-top: 2.5rem;
-      padding: 2rem 2.2rem;
-      border: 1px solid rgba(75,95,232,0.4);
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(75,95,232,0.08) 0%, transparent 70%);
-      position: relative;
-      overflow: hidden;
-      animation: fadeUp 0.6s 0.45s ease both;
+      margin-top: 2rem; padding: 2.2rem 2.4rem;
+      border: 1px solid var(--border-bright); border-radius: 16px;
+      background: var(--accent-dim);
+      position: relative; overflow: hidden;
     }
     .contact-card::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
+      position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
     }
     .contact-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.95rem; font-weight: 400;
+      margin-bottom: 0.75rem; color: var(--text);
     }
-    .contact-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.75;
-    }
-    .contact-card a {
-      color: var(--blue-bright);
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .contact-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.75; }
+    .contact-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
     .contact-card a:hover { text-decoration: underline; }
 
     /* FOOTER */
     footer {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       border-top: 1px solid var(--border);
       padding: 2.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
     }
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-    }
-    footer p { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+    .footer-logo { font-family: 'Audiowide', sans-serif; font-size: 1rem; margin-bottom: 0.25rem; }
+    footer p { color: var(--muted); font-size: 0.8rem; }
     .footer-links { display: flex; gap: 2rem; }
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      transition: color 0.2s;
-    }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
-    .footer-links a.active { color: var(--blue-bright); }
+    .footer-links a.active { color: var(--accent); }
 
-    @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
+    @media (max-width: 900px) {
+      nav { padding: 1.1rem 1.5rem; }
       .page-hero { padding: 3rem 1.5rem 2rem; }
       .content-wrap { padding: 0 1.5rem 4rem; }
       .two-col { grid-template-columns: 1fr; }
@@ -345,138 +237,86 @@
 </head>
 <body>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
+<div class="glow-wrap">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+</div>
 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAGkAaQDASIAAhEBAxEB/8QAHAABAAMAAwEBAAAAAAAAAAAAAAYHCAMEBQEC/8QASxABAAEDAgEEDAoHBwMFAAAAAAECAwQFBhEHEiExCBMXMkFRVWFxgZPTFCJCVmKRkqHD0hU2VHJ0s8EWM1KCorHRI0PCNDdEg/D/xAAbAQEAAgMBAQAAAAAAAAAAAAAABAUDBgcCAf/EAD8RAQABAgMCCgULAwUBAAAAAAABAgMEBREhMQYSExQVQVFSU2EzcaHB0SIyNYGCkZKxsuHwQkOiFiNicvHC/9oADAMBAAIRAxEAPwDxQHemuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPsRMzERHGZ6oB8Ei0nY+79ViKsLbuoV0T1V12pt0z6KquEJJh8i++r9MTdxMPF4+C7lUzMfZ5yDdzPB2Z0uXaYn1wyU2blW6JVyLVo5Cd4VRxnP0SnzTfu/0tvvcH3f5R0L2933aN09l3jQ9c2u91VItbuD7v8o6F7e77s7g+7/KOhe3u+7Onsu8aDm13uqpFrdwfd/lHQvb3fdncH3f5R0L2933Z09l3jQc2u91VItbuD7v8o6F7e77s7g+7/KOhe3u+7Onsu8aDm13uqpFrdwfd/lHQvb3fdncH3f5R0L2933Z09l3jQc2u91VItbuD7v8o6F7e77s7g+7/KOhe3u+7Onsu8aDm13uqpFrdwfd/lHQvb3fdncH3f5R0L2933Z09l3jQc2u91VItbuD7v8AKOhe3u+7O4Pu/wAo6F7e77s6ey7xoObXe6qkWt3B93+UdC9vd92dwfd/lHQvb3fdnT2XeNBza73VUi1u4Pu/yjoXt7vu0A3doV/bWu3tHysvEycixEdtqxqqqqKZmOPN41Ux0x0cehIw2Z4TFV8SzXFU+TzXarojWqHkAJ7GD1tG21uDWOE6Xoufl0T1V27FU0fa4cI+tKcDkf35lRE16XaxaZ6pvZNEfdTMyh3sfhbE6XLlMeuYe6bVdW6EAFp2uQreNcfGzNGt/vX7n9KJfvuD7v8AKOhe3u+7RJz7Lo/vQ982u91VItbuD7v8o6F7e77s7g+7/KOhe3u+7Onsu8aDm13uqpFrdwfd/lHQvb3fdncH3f5R0L2933Z09l3jQc2u91VItbuD7v8AKOhe3u+7O4Pu/wAo6F7e77s6ey7xoObXe6qkWt3B93+UdC9vd92dwfd/lHQvb3fdnT2XeNBza73VUi1u4Pu/yjoXt7vu0N37s/P2bn2MHUs7T8jIvW5uczFuV1TRTx4RNXOpp4cenh19Us2HzXB4mvk7VyJnsh5qs10RrVCNgLFjAAAAAAAAAAHNhYuTnZdvEw8e7kZF2rm27dumaqqp8URDt7c0XUdwaxY0rS7E3sm9VwiPBTHhqqnwRHhlqXk22DpOzNPjtNFOTqVynhfzKqfjT9Gn/DT5vD4VHnOeWcso0nbXO6PfPl+aRYw9V2fJWex+Q3IyKLeXuvLqxaZ6fgePMTX/AJq+mI9EcfTC39ubR23t6imNI0fFx64jh23mc65PprnjV973BzXHZzjMdM8rXs7I2R93xWtuxRb3QAKtmAAAAAAAAAAAAAAAAAARvlJ3RZ2ltPK1Wuaasjh2rFtz8u7Pe+qOmZ80SyHlX72VlXcnIuVXb16ublyuqeM1VTPGZn1p9y4bsr3Vu/4Dg11XcDAqmxj00dPbbkzwqrjx8Z6I80R41kcj3JXj6NZs63uOxRf1SqIrs49ccaMbxTMeGv8A28HT0uiZdNnIMBy1/wBJXt06/KPq3z6/Uq7vGxNzi07oV/sHkg17cFFvN1SqdI0+rppm5RxvXI+jR4I88/VK69rcm2z9vU0VY2lW8rIp/wDkZcRdr4+OOPRT6ohLxq2YZ/jcbMxNXFp7I2ff2plrDW7fVtIiIiIiIiI6ogBSJAAAAAAAAAADo7g1XE0PRcvVs+vmY+Lbm5XPhnxRHnmeER55Y73TrWXuLX8zWc6rjeybk1c3jxiinqppjzRHCPUtPskt3/C9Qt7TwbvGzizF3Mmme+ucPi0f5YnjPnmPEpl03gplfNsPziuPlV7vKP33/cqcbe49XFjdAA21CAAAAAAAAH18T3kL23TuHfePXkW+fh6fHwq9Ex0VTE/Ep9dXCeHhiJR8XiaMLYqvV7qY1eqKJrqimFz8iWyaNq7dpzMyzEatnURXfmY6bVHXTbjxcOufP6IWCDi2LxVzF3qr1ydsr+iiKKYpgARnoAAAAAAAAAAAAAAAAAAV7y7bv/s1tOrDxLvN1LUoqtWeE9Nuj5df1Twjzzx8Ce5eRYxMW7lZN2m1Ys0TcuV1TwimmI4zM+plHc+qZ3KPyj0do51MZd+nGw6Kv+1a48Imfvqn0y2Hg5l0YrEcrd9Hb2z7o98+SLirvEp0jfKc9jnsmjJuTu/U7MVW7Vc0YFFUdE1x0VXPV1R5+PihfTqaNp+NpOlYumYdHMx8W1Tatx5ojh0+d20DNcwrzDE1Xqt3VHZHV/O1ls2otURTAArWUAAAAAAAAAARzlH3PY2ltTK1Wvm1X+Ha8W3Py7s97HojpmfNEpGy7y67v/tLuurDxLvO03TpqtWeE9Fyv5df1xwjzRx8K6yHLJzDFxTV82Ns+rs+tgxN7kqNetAcvIvZeVdysm5Vdv3q5uXK6p6aqpnjMz63EDr8RERpCjAH0AAAAAAAAGjuxl0iMTZuVq1VMRd1DJmKavHbt/Fj/VNbOLYPJdhRp/J5oWNFPNn4FbuVR4qq458/fVLUuGOIm3gotx/VPsjb+eibgadbmvYkgDmS2AcGoZePgYORnZVyLePj26rt2ufk00xxmfqh9iJmdIHQ3VuPR9saZOoazmU49rqop667lX+Gmnrmf/0qV3Ly8apeu1W9v6Xj4lnjwi7lcblyY8fCJiKfR8ZXe/8AdWdu7cV7U8uqqm1xmnGsTPRZt+CI8/hmfDKPOmZVwVw9m3FeJjjVz1dUeXn9apvYyqqdKNkJtk8q2/r9c1Tr9dEeCm3j2qYj6qXF3Tt+fOPJ+xR+VDhfxlmCiNIs0/hj4I3LXO9P3pj3Tt+fOPJ+xR+U7p2/PnHk/Yo/Khw+9G4Pwqfwx8DlbnelMe6dvz5x5P2KPyndO35848n7FH5UODo3B+FT+GPgcrc70pj3Tt+fOPJ+xR+U7p2/PnHk/Yo/KhwdG4Pwqfwx8Dlbnelorsd90a9uOrXI1vUrub8Hix2rn00xzed2zj1RHXzY+pbai+xT7/cfoxvxV6OW8I7dFrMrlFEREbNkbP6YW+FmZtRMgCkSBlrcnKRvfG3FqWNY3BkUWrWXdoopiij4tMVzER3vialYu3b+ter/AMde/mVNy4H4e1fuXYu0xVpEb4ie3tQcdVVTEaS93unb8+ceT9ij8p3Tt+fOPJ+xR+VDhvfRuD8Kn8MfBXcrc70pNq2/t4atp17T9Q13Jv4t6OFy3MUxFUcePDoiJ8CX9jRpEZu9cjVLlMTRp2NM0z4rlfxY/wBPPVU0R2LuFFramp6hNPCrIze18fHTRREx99dSpz+beCyy5FmmKeNs2Rpv37vJmw2ty7HGnXRboDlC5AAcOdl42DiXczMv28fHtUzVcuXKopppjxzMqb3hy649i9XjbY06nK5vR8KyuNNE/u0RwmY9Mx6EX7IHet7WNwXNu4V6adN0+vmXYpnovXo76Z81M9ER44mfEqx0HI+DFmq1TfxcazO2I6ojz81ZiMXVFXFoT3P5Xt+5VczRq9GLTPyLONbiI9cxM/e6fdP35848n7FH5UOG1U5XgqY0izT+GPghzeuT/VKY907fnzjyfsUflO6dvz5x5P2KPyocPXRuD8Kn8MfA5W53pTHunb8+ceT9ij8p3Tt+fOPJ+xR+VDg6NwfhU/hj4HK3O9KY907fnzjyfsUflO6dvz5x5P2KPyocHRuD8Kn8MfA5W53pS6/ylb5vWa7NzcWVNFdM01RFNETwmOE9MRxhEQZ7OHs2NeSoinXsiI/J5qrqq3zqAMzyAAAAAAAAAANu6ZZjH03FsRHCLdmiiPVTEMRNytD4bzssR/2/+Vjl/wDV9QA0FZCu+yH1OrT+TbIs26ppqzr9vG4x18OmufriiY9axFQ9lJVP9k9Kp+TOdxn2dS2yK3FzMLNM9uv3bWHETpaqZ4AdkUQAAAAAAAC8exT7/cfoxvxV6KL7FPv9x+jG/FXo5Jwn+lLv2f0wusJ6GP51gCgSRi7dv616v/HXv5lTaLF27f1r1f8Ajr38ypvHAn0t31R71fmHzaXlgOhKwak7HqzFvkuwa4j+9vXq59pNP/iy21ZyC/8AtPov/wB/8+41LhlOmAp/7R+UpuA9JPqTkBzJbDpa/nRpehahqVXDhiY1y/0/Rpmr+juo1yp1TTyc6/NPX8BuR9zPhrcXL1FE7pmI9rzXOlMyyFeuXL16u9drmu5XVNVVU9czPTMvwDuW5rwA+gAAAAAAAAAAAAAAAAAAAA3BiXIvYtm9E8Yropq4+mOLD7ZWwcz4fsjRMzjxquYNmav3uZET98S0bhtRM27NfZMx9+nwWGXztqh7YDnyzFYdkthVZPJ7byaI/wDSZtu5VP0Ziqj/AHqpWe83dOkWNf27n6NkTwt5dmq3zuHHm1fJq9U8J9Sbl2JjC4u3endExr6uv2Md2jj0TSxYO5rOnZmkark6Zn2ptZONcm3cpnxx4Y8cT1xPhiXTdrpqiqIqpnWJUExpsAHoAAAAAAXj2Kff7j9GN+KvRRfYp9/uP0Y34q9HJOE/0pd+z+mF1hPQx/OsAUCSMXbt/WvV/wCOvfzKm0WLt2/rXq/8de/mVN44E+lu+qPer8w+bS8sB0JWDU/Y/wByK+SvTKYn+7rv0z7Wqf6ssNI9jJmdv2JlYsz8bGzq4iPo1U0zH385qvDCiasvieyqJ/OPemYGdLv1LUAcvW48neeFVqW0dY0+3HG5kYV63R+9NExH38HrD3brm3XFcb42vkxrGjDQmXLBta7tfeeVaptTTg5dVWRiVRHRzZnjNP8AlmeHo4T4UNdww2IoxNqm7ROyqNWv10zRVNMgDO8gAAAAAAAAAAAAAAAAAAADTvY6apGfyc2sSauNzT8i5YmJ6+Ezz4n0fG4epmJavY2bgp03d97Rr9fNs6nb4UcZ6O20cZp+uJqj08Gv8J8JOJy+rTfT8r7t/s1ScJXxLsebSADkq6AAQXlQ5N9N3najKouRharbp5tvIinjFceCmuPDHinrjz9TP+5eTvd+gXaoy9GyL9mJ6L+LTN23MePjT0x/miGuhsGWcJMVgKYt/Op7J6vVP/qNewtFydd0sOV01UVzRXTNNUTwmJjhMPy3Dex7F7++sW7n71ES4v0fgfsWN7Kn/hfRw3p022f8v2Ruj/8Al7GIxtz9H4H7Fjeyp/4P0fgfsWN7Kn/h9/1tT4P+X7HR8972MRi2uyK3Ji5Ws29s6Zbs0WcGrn5VduiI516Y6KeMeCmJ+uZ8SpW34DE14rD03q6OLxtumuuzq7N6DcoiiqaYnUATHhePYp9/uP0Y34q9FF9in3+4/Rjfir0ck4T/AEpd+z+mF1hPQx/OsAUCSMXbt/WvV/469/MqbRYu3b+ter/x17+ZU3jgT6W76o96vzD5tLywHQlYLk7FzVIs67quj11cPhOPTfoifHbnhMR5+Ff3Kbe7sDXZ23vDTdY4z2uxeiL0R4bdXxa/9Mz61bm+EnF4K5ZjfMbPXG2Pay2K+Jcipsgfm1XRdt03bdUV0VxFVNUTxiYnqmH6cXXwADxN6bX0rdmjVabqtqZp4861do6K7VX+Kmf6dUs77w5I92aHerrw8WrV8OOmm7i08a+H0rffcfRxjztRi5yvPcVl3ybc609k7vq7GC9h6Lu2d7EGXi5OJdmzlY96xcjrou0TTMeqXC3Hct27tPNuUU10+KqOMOD4BgfsWN7Kn/hstPDeNPlWf8v2RJy//l7GIxtz9H4H7Fjeyp/4P0fgfsWN7Kn/AIff9bU+D/l+x0fPe9jEY0jy/wC4MHb+2f0ThY+NTqOp0zRE024427Pyqurome9j0zPgZubPlOYVZhY5eaOLE7tuuvnuhDvWotVcXXUAWjEAAAAAAAAAAAAAAObCyb+HmWcvGuTav2LlNy3XHXTVTPGJ+uHCPkxExpI2Hyeboxd27XxtVsTTTe4czJtRP91diPjR6PDHmmEiZF5M96Zuy9djLtRVewr3CjLx+Pf0+OPpR4J9MeFqvb+s6br+lWdT0rJoyMa7HRVHXTPhpmPBMeJyXPsmry69NVMf7dW6ezyn+bYXWGvxdp0ne74CgSQAAABGOU7dNraO0snUuNM5Vf8A0sSiflXZjo6PFHTM+hJ2V+W7d/8AandtdrFu87TdP42cbhPRXPH49z1zHCPNELzIMs6QxUU1R8inbPw+v8tUfE3uSo1jeg2Reu5F+5kX7lVy7dqmuuuqeM1VTPGZnz8XGDrsRpshSAD6Lx7FPv8AcfoxvxV6KL7FPv8AcfoxvxV6OScJ/pS79n9MLrCehj+dYAoEkYu3b+ter/x17+ZU2ixdu39a9X/jr38ypvHAn0t31R71fmHzaXlgOhKwABpDseN40avt+Nu5t2Ph+nUcLPOnpuWOqOH7ve+jmrVYo0LVc7RNWx9U069NnKx6+dRVH3xMeGJjomPFLVnJtvjTN56TF6xVTYz7VMfCsWZ+NRPjjx0z4J9U9LmfCfJasNdnE2o+RVv8p+E/t2LbCYiK6eJO+ErAaimgAAADg1HMxtPwL+fmXabWPj26rl2ueqmmI4zLnUh2Sm7+ZbtbQwbvxq+bezppnqjrotz6e+n/AC+NYZZgK8fiabNPXv8AKOuf51sV65FuiapVNvzceTurdGXrORzqablXNs25n+7tR3tP1dfnmZeEDs1q1RZoi3RGkRshRVTNU6yAMj4AAAAAAAAAAAAAAAAJBsnd+t7R1H4XpOTwormO3Y9zptXY+lHj88cJR8Yrtmi9RNFyNYnql9pqmmdYaj2PytbZ3DRbsZl6nSM+eibWRXEUVT9Gvqn0TwnzLCpmKqYqpmJiY4xMeFhp7+3N5bn29EU6TrWVj2o6rM1c+39irjT9zTMfwNormasLXp5Tu+/f+afbx8xsrhsYZ20nl33HjxFOpaXp+bEfKo51qqfTPGY+5I8Pl90uqmPhm3syzPh7VfpuR98Utdu8GMytzst6+qY/9SqcXanrXMKoo5eNpzHx9M1uJ81q1P4jk7uuz/2LWvYW/eI05DmMf2Ze+c2u87nL3u/+zu1Z07Du83UdTibVExPTbtfLr83Xwj08fAzCkHKDuXI3ZunK1i9zqbdc8zHtz/27Ud7T6fDPnmUfdJyLLIy/CRRPzp2z6+z6lTiLvK169QAumAABePYp9/uP0Y34q9FF9in3+4/Rjfir0ck4T/Sl37P6YXWE9DH86wQ3e3KTtfa0V2cnL+F51PR8ExuFdcT9Keqn1zx80qN3tytbn3Fz8fGu/onBq6O041U8+qPpXOufVwjzPGXcHsZjtKop4tPbPu65/LzfbuJot7N8ry3tyk7X2tFdnJy/hedT0fBMbhXXE/Snqp9c8fNLK2r5fw/VszO7X2v4Tfrvczjx5vOqmeHHw9brT0zxl8dEyjJLOWUzxJmap3zPwVd/EVXt+4AXTAAAO5o+p5+kaha1DTMu7i5VqeNFy3PCY83njzT0S6Y81UxVE01RrEkTpuaE2Dy2adm0W8LdVuMDJ6vhVumZs1/vR10T9cehbeDl4mdi0ZWFk2cmxXHGi5ariumr0THQxA9HRNb1jRL/AG/SdSysKuZ4z2m5NMVemOqfW0/MOCFi9M14ariT2b4+Me1OtY6qnZXGragzTovLdvDCimjOowdSojrqu2uZXPromI+5KcDl/wAaqIjP21donw1WcqKuPqmmP92s3uCuZW52URV6pj36Sl04y1PXou0VNa5edrTH/U0rWaZ+jbtT/wCcOWOXbZ8xxnB1uPNNi37xEnIcxj+zL3zm13k83nr+LtjbeZrOXwmmxR8Sjjwm5XPRTTHpn+sse6vqGVquqZOpZ12buTk3JuXKp8MzP+3mTnlm5Qre88jExdMt5NjTMaOfzL0RTVXdno50xEzHCI6I6fDKu2+8GconA2JuXY0rq9kdUe+f2V2Lv8pVpG6ABsyIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsvkT3to+y8TXb+pxfu3ciLEY9m1Rxm5NPbOPTPRERzo6/H0cXV3tytbn3Fz8fGu/onBq6O041U8+qPpXOufVwjzK+FZOUYSrE1YqunWudN+3TSIjZH1MvL1xRxInY+z0zxl8BZsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9k=" style="width:40px;height:40px;border-radius:10px;box-shadow:0 0 20px rgba(75,95,232,0.35);" alt="CTC Logo"/>
+    <img src="https://i.ibb.co/vvgXjHZH/CTC.png" alt="CTC" />
     <span class="nav-logo-text">CTC</span>
   </a>
-  <a href="index.html" class="nav-back">← Volver al inicio</a>
+  <a href="index.html" class="btn btn-ghost">← Volver al inicio</a>
 </nav>
 
 <!-- HERO -->
 <div class="page-hero">
-  <div class="page-eyebrow">Legal</div>
-  <h1 class="page-title">Política de <span>Privacidad</span></h1>
-  <p class="page-meta">Última actualización: 1 de marzo de 2025 &nbsp;·&nbsp; CheckTheCord</p>
+  <div class="page-kicker">Legal</div>
+  <h1 class="page-title">Política de <span class="accent-word">Privacidad</span></h1>
+  <p class="page-meta">Última actualización: 1 de marzo de 2025 · CheckTheCord</p>
 </div>
 
 <!-- CONTENT -->
 <div class="content-wrap">
-  <hr class="divider" />
+  <div class="divider"></div>
 
-  <!-- 01 -->
   <div class="policy-section" style="animation-delay:0.05s">
     <span class="section-num">01</span>
     <h2 class="section-heading">¿Quiénes somos?</h2>
     <div class="section-body">
-      <p><strong>CheckTheCord (CTC)</strong> es un bot de Discord especializado en seguridad y moderación de servidores. Ofrece herramientas avanzadas para proteger comunidades: anti-raid, anti-spam, sistema de infracciones, moderación automática, verificación de usuarios, bienvenidas y más.</p>
+      <p><strong>CheckTheCord (CTC)</strong> es un bot de música para Discord. Ofrece reproducción de audio, gestión de colas y configuración de canales dedicados para comunidades.</p>
       <p>Esta política explica de forma transparente qué datos maneja el bot, por qué los necesita y cómo los protege.</p>
     </div>
   </div>
 
-  <!-- 02 -->
-  <div class="policy-section" style="animation-delay:0.1s">
+  <div class="policy-section" style="animation-delay:0.09s">
     <span class="section-num">02</span>
     <h2 class="section-heading">Datos que recopilamos y por qué</h2>
     <div class="section-body">
-      <p>CTC solo recopila los datos estrictamente necesarios para prestar sus funciones de moderación y seguridad. A continuación se detalla cada tipo:</p>
-
+      <p>CTC solo recopila los datos estrictamente necesarios para prestar sus funciones. A continuación se detalla cada tipo:</p>
       <div class="two-col">
         <div class="mini-card">
-          <div class="mini-card-title">🛡️ Moderación</div>
-          <p>ID de usuario, tipo de sanción (ban, kick, mute, warn), motivo, duración y moderador responsable. Necesario para mantener el historial de infracciones.</p>
+          <div class="mini-card-title">🎵 Reproducción</div>
+          <p>ID de usuario que solicita una canción y nombre de la pista. Necesario para gestionar la cola y mostrar quién la añadió.</p>
         </div>
         <div class="mini-card">
-          <div class="mini-card-title">🔒 Anti-raid / Anti-spam</div>
-          <p>Timestamps de mensajes, frecuencia de joins y patrones de actividad sospechosa. Solo se analiza en tiempo real para detectar ataques; no se almacena contenido.</p>
+          <div class="mini-card-title">⚙️ Configuración</div>
+          <p>ID del canal de música, rol de DJ y preferencias del servidor. Se almacena para recordar la configuración entre sesiones.</p>
         </div>
         <div class="mini-card">
-          <div class="mini-card-title">✅ Verificación</div>
-          <p>ID de usuario y estado de verificación (verificado / pendiente). No se almacena ningún dato personal fuera de Discord.</p>
+          <div class="mini-card-title">📋 Cola de reproducción</div>
+          <p>Lista temporal de canciones en cola durante una sesión activa. Se descarta automáticamente al finalizar la sesión.</p>
         </div>
         <div class="mini-card">
-          <div class="mini-card-title">👋 Bienvenidas</div>
-          <p>ID del canal configurado y plantilla del mensaje. El nombre de usuario se obtiene de Discord en tiempo real y no se guarda.</p>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">🎉 Sorteos</div>
-          <p>ID de los participantes, ID del ganador o ganadores, premio y fechas de inicio y fin del sorteo.</p>
-        </div>
-        <div class="mini-card">
-          <div class="mini-card-title">📊 Conteo de mensajes</div>
-          <p>Número de mensajes por usuario dentro del servidor (sin contenido). Solo si el administrador activa esta función.</p>
+          <div class="mini-card-title">📊 Estadísticas (Premium)</div>
+          <p>Número de canciones reproducidas por servidor, sin asociar a usuarios individuales, si el administrador activa esta función.</p>
         </div>
       </div>
-
       <div class="highlight-box">
         🔐 CTC <strong>nunca</strong> lee ni almacena el contenido de los mensajes, DMs, contraseñas, correos electrónicos ni ningún otro dato personal sensible.
       </div>
     </div>
   </div>
 
-  <!-- 03 -->
-  <div class="policy-section" style="animation-delay:0.15s">
+  <div class="policy-section" style="animation-delay:0.13s">
     <span class="section-num">03</span>
     <h2 class="section-heading">Datos de configuración del servidor</h2>
     <div class="section-body">
       <p>Para funcionar correctamente, CTC almacena la configuración específica de cada servidor. Esto incluye:</p>
       <ul>
         <li>ID del servidor (guild ID)</li>
-        <li>IDs de canales asignados (logs, bienvenidas, verificación, etc.)</li>
-        <li>IDs de roles configurados (rol de muted, rol de verificado, roles de staff, etc.)</li>
-        <li>Umbrales y parámetros del sistema anti-spam y anti-raid</li>
-        <li>Palabras o patrones bloqueados por el filtro de contenido automático</li>
+        <li>ID del canal de música designado</li>
+        <li>ID del rol de DJ configurado</li>
         <li>Opciones habilitadas o deshabilitadas por los administradores</li>
       </ul>
       <p>Estos datos son propiedad del servidor y solo los gestiona el bot para ejecutar las funciones configuradas.</p>
     </div>
   </div>
 
-  <!-- 04 -->
-  <div class="policy-section" style="animation-delay:0.2s">
+  <div class="policy-section" style="animation-delay:0.17s">
     <span class="section-num">04</span>
-    <h2 class="section-heading">Logs y registros de moderación</h2>
-    <div class="section-body">
-      <p>CTC puede generar y guardar registros de acciones de moderación (logs) que incluyen:</p>
-      <ul>
-        <li>ID del usuario sancionado</li>
-        <li>ID del moderador que ejecutó la acción</li>
-        <li>Tipo de acción: ban, kick, mute, warn, unban, unmute</li>
-        <li>Motivo de la acción (introducido por el moderador)</li>
-        <li>Fecha y hora de la acción</li>
-        <li>Duración de la sanción (si aplica)</li>
-      </ul>
-      <p>Estos registros permiten a los administradores auditar las acciones de su equipo de moderación y mantener un historial de infracciones por usuario. Son visibles únicamente para los roles con permisos de moderación dentro del servidor.</p>
-      <div class="highlight-box">
-        Los registros de moderación de un servidor son accesibles solo por los administradores y moderadores de ese servidor. CTC no expone estos datos a otros servidores ni al público.
-      </div>
-    </div>
-  </div>
-
-  <!-- 05 -->
-  <div class="policy-section" style="animation-delay:0.25s">
-    <span class="section-num">05</span>
-    <h2 class="section-heading">Sistema anti-raid y seguridad automática</h2>
-    <div class="section-body">
-      <p>Las funciones de seguridad de CTC procesan ciertos datos en tiempo real para detectar amenazas. Esto incluye:</p>
-      <ul>
-        <li>Velocidad de entrada de nuevos miembros (joins por minuto)</li>
-        <li>Frecuencia de mensajes de un mismo usuario en un corto período</li>
-        <li>Cuentas de Discord con antigüedad inferior al umbral configurado</li>
-        <li>Patrones de nombres de usuario o avatares asociados a bots de raid conocidos</li>
-        <li>Detección de menciones masivas (@everyone, @here, múltiples usuarios)</li>
-      </ul>
-      <p>Este análisis se realiza en tiempo real. <strong>No se almacena el contenido de los mensajes</strong>, solo metadatos de actividad. Cuando se desactiva el modo anti-raid, los datos temporales de la sesión se descartan.</p>
-    </div>
-  </div>
-
-  <!-- 06 -->
-  <div class="policy-section" style="animation-delay:0.3s">
-    <span class="section-num">06</span>
     <h2 class="section-heading">Almacenamiento, retención y seguridad</h2>
     <div class="section-body">
       <p>Los datos se almacenan en bases de datos seguras con acceso restringido. Aplicamos las siguientes medidas:</p>
@@ -488,16 +328,15 @@
       <p><strong>Retención de datos:</strong></p>
       <ul>
         <li>Configuración del servidor: se conserva mientras el bot esté en el servidor</li>
-        <li>Historial de infracciones: se conserva hasta que un administrador lo elimine manualmente, o hasta 30 días después de que el bot sea expulsado</li>
-        <li>Datos de sorteos: se eliminan 7 días después de que el sorteo finalice</li>
-        <li>Conteo de mensajes: se puede resetear manualmente por un administrador en cualquier momento</li>
+        <li>Cola de reproducción: se descarta automáticamente al finalizar la sesión de audio</li>
+        <li>Estadísticas (si están activadas): se pueden resetear manualmente por un administrador en cualquier momento</li>
+        <li>Todos los datos del servidor: se eliminan en un máximo de 30 días tras expulsar el bot</li>
       </ul>
     </div>
   </div>
 
-  <!-- 07 -->
-  <div class="policy-section" style="animation-delay:0.35s">
-    <span class="section-num">07</span>
+  <div class="policy-section" style="animation-delay:0.21s">
+    <span class="section-num">05</span>
     <h2 class="section-heading">Compartición de datos con terceros</h2>
     <div class="section-body">
       <p>CTC no vende, alquila ni comparte datos con terceros, salvo en los siguientes casos excepcionales:</p>
@@ -510,46 +349,41 @@
     </div>
   </div>
 
-  <!-- 08 -->
-  <div class="policy-section" style="animation-delay:0.38s">
-    <span class="section-num">08</span>
+  <div class="policy-section" style="animation-delay:0.25s">
+    <span class="section-num">06</span>
     <h2 class="section-heading">Permisos que solicita el bot</h2>
     <div class="section-body">
-      <p>CTC solicita únicamente los permisos necesarios para sus funciones de seguridad y moderación. A continuación explicamos para qué se usa cada permiso relevante:</p>
+      <p>CTC solicita únicamente los permisos necesarios para sus funciones de música. A continuación explicamos para qué se usa cada permiso relevante:</p>
       <ul>
-        <li><strong>Banear y expulsar miembros:</strong> para ejecutar sanciones desde comandos de moderación</li>
-        <li><strong>Gestionar mensajes:</strong> para eliminar mensajes detectados como spam o que infrinjan las reglas configuradas</li>
-        <li><strong>Silenciar miembros (timeout):</strong> para aplicar sanciones temporales</li>
-        <li><strong>Leer historial de mensajes:</strong> únicamente para detectar patrones de spam en tiempo real, sin almacenar contenido</li>
-        <li><strong>Gestionar roles:</strong> para asignar o quitar roles en sistemas de verificación o sanciones</li>
-        <li><strong>Ver el servidor y sus canales:</strong> para ejecutar correctamente las funciones de logs y bienvenidas</li>
-        <li><strong>Enviar mensajes y embeds:</strong> para responder a comandos y publicar notificaciones del bot</li>
+        <li><strong>Conectar y hablar en canales de voz:</strong> para reproducir música en el canal de voz del servidor</li>
+        <li><strong>Ver canales:</strong> para detectar el canal de música configurado y responder comandos</li>
+        <li><strong>Enviar mensajes y embeds:</strong> para mostrar el reproductor, la cola y las respuestas a comandos</li>
+        <li><strong>Gestionar mensajes:</strong> para limpiar comandos antiguos en el canal de música si está configurado así</li>
+        <li><strong>Leer historial de mensajes:</strong> para detectar comandos en el canal designado</li>
       </ul>
       <div class="highlight-box">
-        CTC nunca solicita permisos de administrador de forma innecesaria. Si el bot los tiene asignados, es decisión exclusiva del administrador del servidor al añadirlo.
+        CTC nunca solicita permisos de administrador de forma innecesaria. Si el bot los tiene asignados, es decisión exclusiva del administrador del servidor.
       </div>
     </div>
   </div>
 
-  <!-- 09 -->
-  <div class="policy-section" style="animation-delay:0.41s">
-    <span class="section-num">09</span>
+  <div class="policy-section" style="animation-delay:0.29s">
+    <span class="section-num">07</span>
     <h2 class="section-heading">Tus derechos como usuario</h2>
     <div class="section-body">
       <p>Cualquier usuario cuyos datos hayan sido procesados por CTC tiene los siguientes derechos:</p>
       <ul>
         <li><strong>Acceso:</strong> solicitar qué datos tiene CTC sobre ti en un servidor específico</li>
-        <li><strong>Rectificación:</strong> solicitar la corrección de datos erróneos (por ejemplo, un motivo de infracción incorrecto)</li>
-        <li><strong>Eliminación:</strong> solicitar el borrado de tus datos, incluyendo el historial de infracciones</li>
-        <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos para funciones opcionales como el conteo de mensajes</li>
+        <li><strong>Rectificación:</strong> solicitar la corrección de datos erróneos</li>
+        <li><strong>Eliminación:</strong> solicitar el borrado de tus datos</li>
+        <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos para funciones opcionales</li>
       </ul>
-      <p>Los administradores de servidor también pueden eliminar todos los datos de su servidor en cualquier momento expulsando al bot. Los datos se borrarán en un máximo de 30 días.</p>
+      <p>Los administradores de servidor también pueden eliminar todos los datos de su servidor expulsando al bot. Los datos se borrarán en un máximo de 30 días.</p>
     </div>
   </div>
 
-  <!-- 10 -->
-  <div class="policy-section" style="animation-delay:0.44s">
-    <span class="section-num">10</span>
+  <div class="policy-section" style="animation-delay:0.33s">
+    <span class="section-num">08</span>
     <h2 class="section-heading">Menores de edad</h2>
     <div class="section-body">
       <p>CheckTheCord no está dirigido a personas menores de 13 años. Al interactuar con el bot, confirmas que cumples con la edad mínima establecida por Discord y por la legislación aplicable en tu país.</p>
@@ -557,9 +391,8 @@
     </div>
   </div>
 
-  <!-- 11 -->
-  <div class="policy-section" style="animation-delay:0.47s">
-    <span class="section-num">11</span>
+  <div class="policy-section" style="animation-delay:0.37s">
+    <span class="section-num">09</span>
     <h2 class="section-heading">Cambios en esta política</h2>
     <div class="section-body">
       <p>Podemos actualizar esta Política de Privacidad cuando sea necesario, por ejemplo al añadir nuevas funciones al bot. Cuando los cambios sean significativos, lo comunicaremos a través del servidor de soporte oficial de CTC en Discord y actualizaremos la fecha indicada al inicio de este documento.</p>
@@ -567,15 +400,15 @@
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <div class="contact-card">
+  <div class="contact-card" style="animation: fadeUp 0.6s 0.42s ease both;">
     <h3>¿Tienes preguntas o quieres eliminar tus datos?</h3>
     <p>
       Si tienes cualquier consulta sobre esta política, quieres solicitar acceso a tus datos o pedir su eliminación, únete a nuestro servidor de soporte y abre un ticket. Te responderemos lo antes posible.
       <br /><br />
-      <a href="https://discord.gg/gYnt45XF8j" target="_blank" rel="noopener">→ Unirse al servidor de soporte en Discord</a>
+      <a href="https://discord.gg/mGGqVpmEqG" target="_blank" rel="noopener">→ Unirse al servidor de soporte en Discord</a>
     </p>
   </div>
+
 </div>
 
 <!-- FOOTER -->
@@ -591,5 +424,16 @@
   </div>
 </footer>
 
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.policy-section').forEach(el => {
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, background 0.3s';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
